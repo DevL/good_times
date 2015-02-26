@@ -7,8 +7,12 @@ defmodule GoodTimesTest do
   end
 
   @tag :pending
-  test "seconds_from_now", do: end
+  test "seconds_from_now" do
+    assert true
+  end
 
   @tag :pending
-  test "seconds_ago", do: end
+  test "seconds_ago" do
+    assert true
+  end
 end
