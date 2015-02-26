@@ -23,7 +23,7 @@ defmodule GoodTimes.Mixfile do
       contributors: ["Lennart Fridén", "Martin Svalin"],
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/magplus/message_queue_writer"}
+      links: %{"GitHub" => "https://github.com/magplus/good_times"}
     ]
   end
 
