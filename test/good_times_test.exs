@@ -8,15 +8,33 @@ defmodule GoodTimesTest do
 
   test "seconds_from_now" do
     expected = {0, {0, 0, 10}}
-    difference = :calendar.time_difference now, seconds_from_now(10)
+    actual = difference now, seconds_from_now(10)
 
-    assert difference == expected
+    assert actual == expected
   end
 
   test "seconds_ago" do
     expected = {-1, {23, 59, 45}}
-    difference = :calendar.time_difference now, seconds_ago(15)
+    actual = difference now, seconds_ago(15)
 
-    assert difference == expected
+    assert actual == expected
+  end
+
+  test "minutes_from_now" do
+    expected = {0, {0, 5, 0}}
+    actual = difference now, minutes_from_now(5)
+
+    assert actual == expected
+  end
+
+  test "minutes_ago" do
+    expected = {-1, {23, 40, 0}}
+    actual = difference now, minutes_ago(20)
+
+    assert actual == expected
+  end
+
+  defp difference(t1, t2) do
+    :calendar.time_difference t1, t2
   end
 end
