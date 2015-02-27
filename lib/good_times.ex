@@ -1,6 +1,7 @@
 defmodule GoodTimes do
   @seconds_per_minute 60
   @seconds_per_hour 3600
+  @seconds_per_day 86400
 
   def now, do: :calendar.universal_time
 
@@ -20,4 +21,8 @@ defmodule GoodTimes do
   def hours_from_now(hours), do: seconds_from_now(hours * @seconds_per_hour)
 
   def hours_ago(hours), do: seconds_ago(hours * @seconds_per_hour)
+
+  def days_from_now(days), do: seconds_from_now(days * @seconds_per_day)
+
+  def days_ago(days), do: seconds_ago(days * @seconds_per_day)
 end
