@@ -1,7 +1,6 @@
 defmodule GoodTimesTest do
   use ExUnit.Case
   import GoodTimes
-  import Mock
 
   test "now" do
     assert now == :calendar.universal_time
