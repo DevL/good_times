@@ -1,5 +1,7 @@
 # GoodTimes
 
+[![Build Status](https://travis-ci.org/magplus/good-times.svg?branch=master)](https://travis-ci.org/magplus/good-times)
+
 Easy to use time functions.
 
 ## Examples
