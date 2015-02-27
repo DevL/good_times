@@ -39,6 +39,14 @@ defmodule GoodTimes do
   end
 
   @doc """
+  Returns the UTC date and time a second from now.
+
+  `a_second_from_now # => {{2015, 2, 27}, {18, 30, 46}}`
+  """
+  @spec a_second_from_now :: datetime
+  def a_second_from_now, do: seconds_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified seconds ago.
 
   ## Examples
@@ -48,6 +56,14 @@ defmodule GoodTimes do
   """
   @spec seconds_ago(integer) :: datetime
   def seconds_ago(seconds), do: seconds_from_now(-seconds)
+
+  @doc """
+  Returns the UTC date and time a second ago.
+
+  `a_second_ago # => {{2015, 2, 27}, {18, 30, 44}}`
+  """
+  @spec a_second_ago :: datetime
+  def a_second_ago, do: seconds_ago(1)
 
   @doc """
   Returns the UTC date and time the specified minutes from now.
