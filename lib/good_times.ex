@@ -168,6 +168,17 @@ defmodule GoodTimes do
   def days_from_now(days), do: seconds_from_now(days * @seconds_per_day)
 
   @doc """
+  Returns the UTC date and time a day from now.
+
+   ## Examples
+
+      iex> a_day_from_now
+      {{2015, 2, 28}, {18, 30, 45}}
+  """
+  @spec a_day_from_now :: datetime
+  def a_day_from_now, do: days_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified days ago.
 
   ## Examples
@@ -177,4 +188,15 @@ defmodule GoodTimes do
   """
   @spec days_ago(integer) :: datetime
   def days_ago(days), do: seconds_ago(days * @seconds_per_day)
+
+  @doc """
+  Returns the UTC date and time a day ago.
+
+   ## Examples
+
+      iex> a_day_ago
+      {{2015, 2, 26}, {18, 30, 45}}
+  """
+  @spec a_day_ago :: datetime
+  def a_day_ago, do: days_ago(1)
 end
