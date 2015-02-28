@@ -282,7 +282,7 @@ defmodule GoodTimes do
       {{2015, 2, 20}, {18, 30, 45}}
   """
   @spec days_ago(integer) :: datetime
-  def days_ago(days), do: days_before(days,now)
+  def days_ago(days), do: days_before(days, now)
 
   @doc """
   Returns the UTC date and time a day ago.
