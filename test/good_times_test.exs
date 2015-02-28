@@ -90,6 +90,20 @@ defmodule GoodTimesTest do
     assert actual == expected
   end
 
+  test "an_hour_from_now" do
+    expected = {0, {1, 0, 0}}
+    actual = difference now, an_hour_from_now
+
+    assert actual == expected
+  end
+
+  test "an_hour_ago" do
+    expected = {-1, {23, 0, 0}}
+    actual = difference now, an_hour_ago
+
+    assert actual == expected
+  end
+
   defp difference(t1, t2) do
     :calendar.time_difference t1, t2
   end
