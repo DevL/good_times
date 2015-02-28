@@ -46,6 +46,17 @@ defmodule GoodTimes do
   end
 
   @doc """
+  Returns the UTC date and time a second after the given datetime.
+
+  ## Examples
+
+      iex> a_second_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 30, 46}}
+  """
+  @spec a_second_after(datetime) :: datetime
+  def a_second_after(datetime), do: seconds_after(1, datetime)
+
+  @doc """
   Returns the UTC date and time the specified seconds before the given datetime.
 
   ## Examples
@@ -55,6 +66,17 @@ defmodule GoodTimes do
   """
   @spec seconds_before(integer, datetime) :: datetime
   def seconds_before(seconds, datetime), do: seconds_after(-seconds, datetime)
+
+  @doc """
+  Returns the UTC date and time a second before the given datetime.
+
+  ## Examples
+
+      iex> a_second_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 30, 44}}
+  """
+  @spec a_second_before(datetime) :: datetime
+  def a_second_before(datetime), do: seconds_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified seconds from now.
