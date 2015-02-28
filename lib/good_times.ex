@@ -41,7 +41,10 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a second from now.
 
-  `a_second_from_now # => {{2015, 2, 27}, {18, 30, 46}}`
+   ## Examples
+
+      iex> a_second_from_now
+      {{2015, 2, 27}, {18, 30, 46}}
   """
   @spec a_second_from_now :: datetime
   def a_second_from_now, do: seconds_from_now(1)
