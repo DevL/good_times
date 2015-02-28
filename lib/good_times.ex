@@ -1,4 +1,11 @@
 defmodule GoodTimes do
+  @moduledoc """
+  Convenience time functions.
+
+  Unless explicitly stated, all functions operate on and return an
+  Erlang datetime based on the Coordinated Universal Time (UTC).
+  """
+
   @seconds_per_minute 60
   @seconds_per_hour 3600
   @seconds_per_day 86400
@@ -39,6 +46,17 @@ defmodule GoodTimes do
   end
 
   @doc """
+  Returns the UTC date and time a second from now.
+
+   ## Examples
+
+      iex> a_second_from_now
+      {{2015, 2, 27}, {18, 30, 46}}
+  """
+  @spec a_second_from_now :: datetime
+  def a_second_from_now, do: seconds_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified seconds ago.
 
   ## Examples
@@ -48,6 +66,14 @@ defmodule GoodTimes do
   """
   @spec seconds_ago(integer) :: datetime
   def seconds_ago(seconds), do: seconds_from_now(-seconds)
+
+  @doc """
+  Returns the UTC date and time a second ago.
+
+  `a_second_ago # => {{2015, 2, 27}, {18, 30, 44}}`
+  """
+  @spec a_second_ago :: datetime
+  def a_second_ago, do: seconds_ago(1)
 
   @doc """
   Returns the UTC date and time the specified minutes from now.
@@ -61,6 +87,17 @@ defmodule GoodTimes do
   def minutes_from_now(minutes), do: seconds_from_now(minutes * @seconds_per_minute)
 
   @doc """
+  Returns the UTC date and time a minute from now.
+
+   ## Examples
+
+      iex> a_minute_from_now
+      {{2015, 2, 27}, {18, 31, 45}}
+  """
+  @spec a_minute_from_now :: datetime
+  def a_minute_from_now, do: minutes_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified minutes ago.
 
   ## Examples
@@ -70,6 +107,17 @@ defmodule GoodTimes do
   """
   @spec minutes_ago(integer) :: datetime
   def minutes_ago(minutes), do: seconds_ago(minutes * @seconds_per_minute)
+
+  @doc """
+  Returns the UTC date and time a minute ago.
+
+   ## Examples
+
+      iex> a_minute_ago
+      {{2015, 2, 27}, {18, 29, 45}}
+  """
+  @spec a_minute_ago :: datetime
+  def a_minute_ago, do: minutes_ago(1)
 
   @doc """
   Returns the UTC date and time the specified hours from now.
@@ -83,6 +131,17 @@ defmodule GoodTimes do
   def hours_from_now(hours), do: seconds_from_now(hours * @seconds_per_hour)
 
   @doc """
+  Returns the UTC date and time an hour from now.
+
+   ## Examples
+
+      iex> an_hour_from_now
+      {{2015, 2, 27}, {19, 30, 45}}
+  """
+  @spec an_hour_from_now :: datetime
+  def an_hour_from_now, do: hours_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified hours ago.
 
   ## Examples
@@ -92,6 +151,17 @@ defmodule GoodTimes do
   """
   @spec hours_ago(integer) :: datetime
   def hours_ago(hours), do: seconds_ago(hours * @seconds_per_hour)
+
+  @doc """
+  Returns the UTC date and time an hour ago.
+
+   ## Examples
+
+      iex> an_hour_ago
+      {{2015, 2, 27}, {17, 30, 45}}
+  """
+  @spec an_hour_ago :: datetime
+  def an_hour_ago, do: hours_ago(1)
 
   @doc """
   Returns the UTC date and time the specified days from now.
@@ -105,6 +175,17 @@ defmodule GoodTimes do
   def days_from_now(days), do: seconds_from_now(days * @seconds_per_day)
 
   @doc """
+  Returns the UTC date and time a day from now.
+
+   ## Examples
+
+      iex> a_day_from_now
+      {{2015, 2, 28}, {18, 30, 45}}
+  """
+  @spec a_day_from_now :: datetime
+  def a_day_from_now, do: days_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified days ago.
 
   ## Examples
@@ -114,4 +195,15 @@ defmodule GoodTimes do
   """
   @spec days_ago(integer) :: datetime
   def days_ago(days), do: seconds_ago(days * @seconds_per_day)
+
+  @doc """
+  Returns the UTC date and time a day ago.
+
+   ## Examples
+
+      iex> a_day_ago
+      {{2015, 2, 26}, {18, 30, 45}}
+  """
+  @spec a_day_ago :: datetime
+  def a_day_ago, do: days_ago(1)
 end
