@@ -34,3 +34,4 @@ defmodule MyModule do
   import GoodTimes
 ```
 
+For more information, see [the full documentation](http://hexdocs.pm/good_times/).
