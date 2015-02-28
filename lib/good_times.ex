@@ -131,6 +131,17 @@ defmodule GoodTimes do
   def minutes_after(minutes, datetime), do: seconds_after(minutes * @seconds_per_minute, datetime)
 
   @doc """
+  Returns the UTC date and time a minute after the given datetime.
+
+  ## Examples
+
+      iex> a_minute_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 31, 45}}
+  """
+  @spec a_minute_after(datetime) :: datetime
+  def a_minute_after(datetime), do: seconds_after(@seconds_per_minute, datetime)
+
+  @doc """
   Returns the UTC date and time the specified minutes before the given datetime.
 
   ## Examples
@@ -140,6 +151,17 @@ defmodule GoodTimes do
   """
   @spec minutes_before(integer, datetime) :: datetime
   def minutes_before(minutes, datetime), do: seconds_before(minutes * @seconds_per_minute, datetime)
+
+  @doc """
+  Returns the UTC date and time a minute before the given datetime.
+
+  ## Examples
+
+      iex> a_minute_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 29, 45}}
+  """
+  @spec a_minute_before(datetime) :: datetime
+  def a_minute_before(datetime), do: seconds_before(@seconds_per_minute, datetime)
 
   @doc """
   Returns the UTC date and time the specified minutes from now.
