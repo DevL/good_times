@@ -219,6 +219,17 @@ defmodule GoodTimes do
   def hours_after(hours, datetime), do: seconds_after(hours * @seconds_per_hour, datetime)
 
   @doc """
+  Returns the UTC date and time an hour after the given datetime.
+
+  ## Examples
+
+      iex> an_hour_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {19, 30, 45}}
+  """
+  @spec an_hour_after(datetime) :: datetime
+  def an_hour_after(datetime), do: seconds_after(@seconds_per_hour, datetime)
+
+  @doc """
   Returns the UTC date and time the specified hours before the given datetime.
 
   ## Examples
@@ -228,6 +239,17 @@ defmodule GoodTimes do
   """
   @spec hours_before(integer, datetime) :: datetime
   def hours_before(hours, datetime), do: seconds_before(hours * @seconds_per_hour, datetime)
+
+  @doc """
+  Returns the UTC date and time an hour before the given datetime.
+
+  ## Examples
+
+      iex> an_hour_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {17, 30, 45}}
+  """
+  @spec an_hour_before(datetime) :: datetime
+  def an_hour_before(datetime), do: seconds_before(@seconds_per_hour, datetime)
 
   @doc """
   Returns the UTC date and time the specified hours from now.
