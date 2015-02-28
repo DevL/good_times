@@ -105,6 +105,20 @@ defmodule GoodTimesTest do
     assert actual == expected
   end
 
+  test "a_day_after" do
+    expected = {1, {0, 0, 0}}
+    actual = difference @a_datetime, a_day_after(@a_datetime)
+
+    assert actual == expected
+  end
+
+  test "a_day_before" do
+    expected = {-1, {0, 0, 0}}
+    actual = difference @a_datetime, a_day_before(@a_datetime)
+
+    assert actual == expected
+  end
+
   test "seconds_from_now" do
     expected = {0, {0, 0, 10}}
     actual = difference now, seconds_from_now(10)
