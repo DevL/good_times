@@ -4,7 +4,7 @@ defmodule GoodTimes.Mixfile do
   def project do
     [
       app: :good_times,
-      version: "0.2.0",
+      version: "0.3.0",
       name: "GoodTimes",
       source_url: "https://github.com/magplus/good_times",
       elixir: "~> 1.0",
