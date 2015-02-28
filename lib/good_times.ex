@@ -80,6 +80,17 @@ defmodule GoodTimes do
   def minutes_from_now(minutes), do: seconds_from_now(minutes * @seconds_per_minute)
 
   @doc """
+  Returns the UTC date and time a minute from now.
+
+   ## Examples
+
+      iex> a_minute_from_now
+      {{2015, 2, 27}, {18, 31, 45}}
+  """
+  @spec a_minute_from_now :: datetime
+  def a_minute_from_now, do: minutes_from_now(1)
+
+  @doc """
   Returns the UTC date and time the specified minutes ago.
 
   ## Examples
@@ -89,6 +100,17 @@ defmodule GoodTimes do
   """
   @spec minutes_ago(integer) :: datetime
   def minutes_ago(minutes), do: seconds_ago(minutes * @seconds_per_minute)
+
+  @doc """
+  Returns the UTC date and time a minute ago.
+
+   ## Examples
+
+      iex> a_minute_ago
+      {{2015, 2, 27}, {18, 29, 45}}
+  """
+  @spec a_minute_ago :: datetime
+  def a_minute_ago, do: minutes_ago(1)
 
   @doc """
   Returns the UTC date and time the specified hours from now.
