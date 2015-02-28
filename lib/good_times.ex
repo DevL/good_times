@@ -1,4 +1,11 @@
 defmodule GoodTimes do
+  @moduledoc """
+  Convenience time functions.
+
+  Unless explicitly stated, all functions operate on and return an
+  Erlang datetime based on the Coordinated Universal Time (UTC).
+  """
+
   @seconds_per_minute 60
   @seconds_per_hour 3600
   @seconds_per_day 86400
