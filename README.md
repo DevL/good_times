@@ -24,7 +24,7 @@ iex(4)> 60 |> seconds_ago
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:good_times, "~> 0.3.0"}]
+  [{:good_times, "~> 0.4.0"}]
 end
 ```
 
@@ -34,3 +34,4 @@ defmodule MyModule do
   import GoodTimes
 ```
 
+For more information, see [the full documentation](http://hexdocs.pm/good_times/).

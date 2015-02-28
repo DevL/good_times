@@ -6,6 +6,63 @@ defmodule GoodTimesTest do
     assert now == :calendar.universal_time
   end
 
+  @a_datetime {{2015, 2, 27}, {18, 30, 45}}
+  test "seconds_after" do
+    expected = {0, {0, 0, 10}}
+    actual = difference @a_datetime, seconds_after(10, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "seconds_before" do
+    expected = {-1, {23, 59, 50}}
+    actual = difference @a_datetime, seconds_before(10, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "minutes_after" do
+    expected = {0, {0, 10, 0}}
+    actual = difference @a_datetime, minutes_after(10, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "minutes_before" do
+    expected = {-1, {23, 50, 0}}
+    actual = difference @a_datetime, minutes_before(10, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "hours_after" do
+    expected = {0, {10, 0, 0}}
+    actual = difference @a_datetime, hours_after(10, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "hours_before" do
+    expected = {-1, {14, 0, 0}}
+    actual = difference @a_datetime, hours_before(10, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "days_after" do
+    expected = {3, {0, 0, 0}}
+    actual = difference @a_datetime, days_after(3, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "days_before" do
+    expected = {-3, {0, 0, 0}}
+    actual = difference @a_datetime, days_before(3, @a_datetime)
+
+    assert actual == expected
+  end
+
   test "seconds_from_now" do
     expected = {0, {0, 0, 10}}
     actual = difference now, seconds_from_now(10)
