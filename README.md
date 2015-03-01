@@ -35,3 +35,7 @@ defmodule MyModule do
 ```
 
 For more information, see [the full documentation](http://hexdocs.pm/good_times/).
+
+## Known limitations
+
+As GoodTimes uses [Erlangs calendar module](http://erlang.org/doc/man/calendar.html), dates and times before year 0 aren't supported.
