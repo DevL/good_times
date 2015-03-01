@@ -139,7 +139,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 31, 45}}
   """
   @spec a_minute_after(datetime) :: datetime
-  def a_minute_after(datetime), do: seconds_after(@seconds_per_minute, datetime)
+  def a_minute_after(datetime), do: minutes_after(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified minutes before the given datetime.
@@ -161,7 +161,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 29, 45}}
   """
   @spec a_minute_before(datetime) :: datetime
-  def a_minute_before(datetime), do: seconds_before(@seconds_per_minute, datetime)
+  def a_minute_before(datetime), do: minutes_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified minutes from now.
@@ -227,7 +227,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {19, 30, 45}}
   """
   @spec an_hour_after(datetime) :: datetime
-  def an_hour_after(datetime), do: seconds_after(@seconds_per_hour, datetime)
+  def an_hour_after(datetime), do: hours_after(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified hours before the given datetime.
@@ -249,7 +249,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {17, 30, 45}}
   """
   @spec an_hour_before(datetime) :: datetime
-  def an_hour_before(datetime), do: seconds_before(@seconds_per_hour, datetime)
+  def an_hour_before(datetime), do: hours_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified hours from now.
@@ -315,7 +315,7 @@ defmodule GoodTimes do
       {{2015, 2, 28}, {18, 30, 45}}
   """
   @spec a_day_after(datetime) :: datetime
-  def a_day_after(datetime), do: seconds_after(@seconds_per_day, datetime)
+  def a_day_after(datetime), do: days_after(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified days before the given datetime.
@@ -337,7 +337,7 @@ defmodule GoodTimes do
       {{2015, 2, 26}, {18, 30, 45}}
   """
   @spec a_day_before(datetime) :: datetime
-  def a_day_before(datetime), do: seconds_before(@seconds_per_day, datetime)
+  def a_day_before(datetime), do: days_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified days from now.
