@@ -46,6 +46,17 @@ defmodule GoodTimes do
   end
 
   @doc """
+  Returns the UTC date and time a second after the given datetime.
+
+  ## Examples
+
+      iex> a_second_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 30, 46}}
+  """
+  @spec a_second_after(datetime) :: datetime
+  def a_second_after(datetime), do: seconds_after(1, datetime)
+
+  @doc """
   Returns the UTC date and time the specified seconds before the given datetime.
 
   ## Examples
@@ -55,6 +66,17 @@ defmodule GoodTimes do
   """
   @spec seconds_before(integer, datetime) :: datetime
   def seconds_before(seconds, datetime), do: seconds_after(-seconds, datetime)
+
+  @doc """
+  Returns the UTC date and time a second before the given datetime.
+
+  ## Examples
+
+      iex> a_second_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 30, 44}}
+  """
+  @spec a_second_before(datetime) :: datetime
+  def a_second_before(datetime), do: seconds_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified seconds from now.
@@ -109,6 +131,17 @@ defmodule GoodTimes do
   def minutes_after(minutes, datetime), do: seconds_after(minutes * @seconds_per_minute, datetime)
 
   @doc """
+  Returns the UTC date and time a minute after the given datetime.
+
+  ## Examples
+
+      iex> a_minute_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 31, 45}}
+  """
+  @spec a_minute_after(datetime) :: datetime
+  def a_minute_after(datetime), do: minutes_after(1, datetime)
+
+  @doc """
   Returns the UTC date and time the specified minutes before the given datetime.
 
   ## Examples
@@ -118,6 +151,17 @@ defmodule GoodTimes do
   """
   @spec minutes_before(integer, datetime) :: datetime
   def minutes_before(minutes, datetime), do: seconds_before(minutes * @seconds_per_minute, datetime)
+
+  @doc """
+  Returns the UTC date and time a minute before the given datetime.
+
+  ## Examples
+
+      iex> a_minute_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {18, 29, 45}}
+  """
+  @spec a_minute_before(datetime) :: datetime
+  def a_minute_before(datetime), do: minutes_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified minutes from now.
@@ -175,6 +219,17 @@ defmodule GoodTimes do
   def hours_after(hours, datetime), do: seconds_after(hours * @seconds_per_hour, datetime)
 
   @doc """
+  Returns the UTC date and time an hour after the given datetime.
+
+  ## Examples
+
+      iex> an_hour_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {19, 30, 45}}
+  """
+  @spec an_hour_after(datetime) :: datetime
+  def an_hour_after(datetime), do: hours_after(1, datetime)
+
+  @doc """
   Returns the UTC date and time the specified hours before the given datetime.
 
   ## Examples
@@ -184,6 +239,17 @@ defmodule GoodTimes do
   """
   @spec hours_before(integer, datetime) :: datetime
   def hours_before(hours, datetime), do: seconds_before(hours * @seconds_per_hour, datetime)
+
+  @doc """
+  Returns the UTC date and time an hour before the given datetime.
+
+  ## Examples
+
+      iex> an_hour_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 27}, {17, 30, 45}}
+  """
+  @spec an_hour_before(datetime) :: datetime
+  def an_hour_before(datetime), do: hours_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified hours from now.
@@ -241,6 +307,17 @@ defmodule GoodTimes do
   def days_after(days, datetime), do: seconds_after(days * @seconds_per_day, datetime)
 
   @doc """
+  Returns the UTC date and time a day after the given datetime.
+
+  ## Examples
+
+      iex> a_day_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 28}, {18, 30, 45}}
+  """
+  @spec a_day_after(datetime) :: datetime
+  def a_day_after(datetime), do: days_after(1, datetime)
+
+  @doc """
   Returns the UTC date and time the specified days before the given datetime.
 
   ## Examples
@@ -250,6 +327,17 @@ defmodule GoodTimes do
   """
   @spec days_before(integer, datetime) :: datetime
   def days_before(days, datetime), do: seconds_before(days * @seconds_per_day, datetime)
+
+  @doc """
+  Returns the UTC date and time a day before the given datetime.
+
+  ## Examples
+
+      iex> a_day_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 26}, {18, 30, 45}}
+  """
+  @spec a_day_before(datetime) :: datetime
+  def a_day_before(datetime), do: days_before(1, datetime)
 
   @doc """
   Returns the UTC date and time the specified days from now.
