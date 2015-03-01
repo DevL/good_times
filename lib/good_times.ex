@@ -10,12 +10,12 @@ defmodule GoodTimes do
   @seconds_per_hour 3600
   @seconds_per_day 86400
 
-  @type year  :: integer
-  @type month :: pos_integer
-  @type day   :: pos_integer
-  @type hour   :: non_neg_integer
-  @type minute :: non_neg_integer
-  @type second :: non_neg_integer
+  @type year  :: non_neg_integer
+  @type month :: 1..12
+  @type day   :: 1..31
+  @type hour   :: 0..23
+  @type minute :: 0..59
+  @type second :: 0..59
   @type datetime :: {{year, month, day}, {hour, minute, second}}
 
   @doc """
