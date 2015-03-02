@@ -3,14 +3,6 @@ defmodule GoodTimes.MetaTest do
   import GoodTimes, only: [now: 0]
 
   defmodule A do
-    @type year  :: integer
-    @type month :: pos_integer
-    @type day   :: pos_integer
-    @type hour   :: non_neg_integer
-    @type minute :: non_neg_integer
-    @type second :: non_neg_integer
-    @type datetime :: {{year, month, day}, {hour, minute, second}}
-
     require GoodTimes.Meta
     import GoodTimes.Meta
 

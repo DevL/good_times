@@ -20,11 +20,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> 15 |> #{unquote time_units_after} #{inspect a_datetime}
-          #{inspect GoodTimes.seconds_after(15 * unquote(seconds_per_time_unit), a_datetime)}
+          #{inspect GoodTimes.Seconds.seconds_after(15 * unquote(seconds_per_time_unit), a_datetime)}
       """
-      @spec unquote(time_units_after)(integer, datetime) :: datetime
-      def unquote(time_units_after)(number, datetime) do
-        GoodTimes.seconds_after(number * unquote(seconds_per_time_unit), datetime)
+      @spec unquote(time_units_after)(integer, GoodTimes.Now.datetime) :: GoodTimes.Now.datetime
+      def unquote(time_units_after)(integer, datetime) do
+        GoodTimes.Seconds.seconds_after(integer * unquote(seconds_per_time_unit), datetime)
       end
 
 
@@ -34,11 +34,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> #{unquote a_time_unit_after} #{inspect a_datetime}
-          #{inspect GoodTimes.seconds_after(unquote(seconds_per_time_unit), a_datetime)}
+          #{inspect GoodTimes.Seconds.seconds_after(unquote(seconds_per_time_unit), a_datetime)}
       """
-      @spec unquote(a_time_unit_after)(datetime) :: datetime
+      @spec unquote(a_time_unit_after)(GoodTimes.Now.datetime) :: GoodTimes.Now.datetime
       def unquote(a_time_unit_after)(datetime) do
-        GoodTimes.seconds_after(unquote(seconds_per_time_unit), datetime)
+        GoodTimes.Seconds.seconds_after(unquote(seconds_per_time_unit), datetime)
       end
 
 
@@ -48,11 +48,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> 15 |> #{unquote time_units_before} #{inspect a_datetime}
-          #{inspect GoodTimes.seconds_before(15 * unquote(seconds_per_time_unit), a_datetime)}
+          #{inspect GoodTimes.Seconds.seconds_before(15 * unquote(seconds_per_time_unit), a_datetime)}
       """
-      @spec unquote(time_units_before)(integer, datetime) :: datetime
-      def unquote(time_units_before)(number, datetime) do
-        GoodTimes.seconds_before(number * unquote(seconds_per_time_unit), datetime)
+      @spec unquote(time_units_before)(integer, GoodTimes.Now.datetime) :: GoodTimes.Now.datetime
+      def unquote(time_units_before)(integer, datetime) do
+        GoodTimes.Seconds.seconds_before(integer * unquote(seconds_per_time_unit), datetime)
       end
 
 
@@ -62,11 +62,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> #{unquote a_time_unit_before} #{inspect a_datetime}
-          #{inspect GoodTimes.seconds_before(unquote(seconds_per_time_unit), a_datetime)}
+          #{inspect GoodTimes.Seconds.seconds_before(unquote(seconds_per_time_unit), a_datetime)}
       """
-      @spec unquote(a_time_unit_before)(datetime) :: datetime
+      @spec unquote(a_time_unit_before)(GoodTimes.Now.datetime) :: GoodTimes.Now.datetime
       def unquote(a_time_unit_before)(datetime) do
-        GoodTimes.seconds_before(unquote(seconds_per_time_unit), datetime)
+        GoodTimes.Seconds.seconds_before(unquote(seconds_per_time_unit), datetime)
       end
 
 
@@ -76,11 +76,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> 15 |> #{unquote time_units_from_now}
-          #{inspect GoodTimes.seconds_from_now(15 * unquote seconds_per_time_unit)}
+          #{inspect GoodTimes.Seconds.seconds_from_now(15 * unquote seconds_per_time_unit)}
       """
-      @spec unquote(time_units_from_now)(integer) :: datetime
-      def unquote(time_units_from_now)(number) do
-        GoodTimes.seconds_from_now(number * unquote seconds_per_time_unit)
+      @spec unquote(time_units_from_now)(integer) :: GoodTimes.Now.datetime
+      def unquote(time_units_from_now)(integer) do
+        GoodTimes.Seconds.seconds_from_now(integer * unquote seconds_per_time_unit)
       end
 
 
@@ -90,11 +90,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> 15 |> #{unquote time_units_ago}
-          #{inspect GoodTimes.seconds_ago(15 * unquote seconds_per_time_unit)}
+          #{inspect GoodTimes.Seconds.seconds_ago(15 * unquote seconds_per_time_unit)}
       """
-      @spec unquote(time_units_ago)(integer) :: datetime
-      def unquote(time_units_ago)(number) do
-        GoodTimes.seconds_ago(number * unquote seconds_per_time_unit)
+      @spec unquote(time_units_ago)(integer) :: GoodTimes.Now.datetime
+      def unquote(time_units_ago)(integer) do
+        GoodTimes.Seconds.seconds_ago(integer * unquote seconds_per_time_unit)
       end
 
 
@@ -104,11 +104,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> #{unquote a_time_unit_from_now}
-          #{inspect GoodTimes.seconds_after(unquote(seconds_per_time_unit), a_datetime)}
+          #{inspect GoodTimes.Seconds.seconds_after(unquote(seconds_per_time_unit), a_datetime)}
       """
-      @spec unquote(a_time_unit_from_now)() :: datetime
+      @spec unquote(a_time_unit_from_now)() :: GoodTimes.Now.datetime
       def unquote(a_time_unit_from_now)() do
-        GoodTimes.seconds_from_now(unquote seconds_per_time_unit)
+        GoodTimes.Seconds.seconds_from_now(unquote seconds_per_time_unit)
       end
 
 
@@ -118,11 +118,11 @@ defmodule GoodTimes.Meta do
       ## Examples
 
           iex> #{unquote a_time_unit_ago}
-          #{inspect GoodTimes.seconds_before(unquote(seconds_per_time_unit), a_datetime)}
+          #{inspect GoodTimes.Seconds.seconds_before(unquote(seconds_per_time_unit), a_datetime)}
       """
-      @spec unquote(a_time_unit_ago)() :: datetime
+      @spec unquote(a_time_unit_ago)() :: GoodTimes.Now.datetime
       def unquote(a_time_unit_ago)() do
-        GoodTimes.seconds_ago(unquote seconds_per_time_unit)
+        GoodTimes.Seconds.seconds_ago(unquote seconds_per_time_unit)
       end
     end
   end
