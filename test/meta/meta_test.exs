@@ -1,4 +1,4 @@
-defmodule GoodTimes.MacroTest do
+defmodule GoodTimes.MetaTest do
   use ExUnit.Case
   import GoodTimes, only: [now: 0]
 
@@ -11,8 +11,8 @@ defmodule GoodTimes.MacroTest do
     @type second :: non_neg_integer
     @type datetime :: {{year, month, day}, {hour, minute, second}}
 
-    require GoodTimes.Macro
-    import GoodTimes.Macro
+    require GoodTimes.Meta
+    import GoodTimes.Meta
 
     define_time_unit_functions(:hundred, 100)
     define_time_unit_functions(:eight, 8, "an")

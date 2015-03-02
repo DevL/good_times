@@ -1,4 +1,4 @@
-defmodule GoodTimes.Macro do
+defmodule GoodTimes.Meta do
   defmacro define_time_unit_functions(time_unit, seconds_per_time_unit, a \\ "a") do
     a_time_unit_from_now = String.to_atom("#{a}_#{time_unit}_from_now")
     a_time_unit_ago = String.to_atom("#{a}_#{time_unit}_ago")
