@@ -18,6 +18,14 @@ defmodule GoodTimes.MetaTest do
     define_time_unit_functions(:eight, 8, "an")
   end
 
+  @a_datetime {{2015, 2, 27}, {18, 30, 45}}
+  test "defines hundreds_after" do
+    expected = {0, {0, 16, 40}}
+    actual = difference @a_datetime, A.hundreds_after(10, @a_datetime)
+
+    assert actual == expected
+  end
+
   test "defines a_hundred_from_now" do
     expected = {0, {0, 1, 40}}
     actual = difference now, A.a_hundred_from_now
