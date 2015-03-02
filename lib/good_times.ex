@@ -18,6 +18,8 @@ defmodule GoodTimes do
   @type second :: 0..59
   @type datetime :: {{year, month, day}, {hour, minute, second}}
 
+  require GoodTimes.Macro
+
   @doc """
   Returns the current UTC time as a datetime.
 
