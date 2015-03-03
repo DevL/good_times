@@ -16,7 +16,6 @@ defmodule GoodTimes do
   """
   defdelegate now, to: GoodTimes.Now
 
-  require GoodTimes.Meta
   import GoodTimes.Meta
   define_time_unit_functions :second, 1
   define_time_unit_functions :minute, 60
