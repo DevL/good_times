@@ -231,6 +231,62 @@ defmodule GoodTimesTest do
     assert actual == expected
   end
 
+  test "weeks_after" do
+    expected = {28, {0, 0, 0}}
+    actual = difference @a_datetime, weeks_after(4, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "weeks_before" do
+    expected = {-28, {0, 0, 0}}
+    actual = difference @a_datetime, weeks_before(4, @a_datetime)
+
+    assert actual == expected
+  end
+
+  test "a_week_after" do
+    expected = {7, {0, 0, 0}}
+    actual = difference @a_datetime, a_week_after(@a_datetime)
+
+    assert actual == expected
+  end
+
+  test "a_week_before" do
+    expected = {-7, {0, 0, 0}}
+    actual = difference @a_datetime, a_week_before(@a_datetime)
+
+    assert actual == expected
+  end
+
+  test "weeks_from_now" do
+    expected = {28, {0, 0, 0}}
+    actual = difference now, weeks_from_now(4)
+
+    assert actual == expected
+  end
+
+  test "weeks_ago" do
+    expected = {-28, {0, 0, 0}}
+    actual = difference now, weeks_ago(4)
+
+    assert actual == expected
+  end
+
+  test "a_week_from_now" do
+    expected = {7, {0, 0, 0}}
+    actual = difference now, a_week_from_now
+
+    assert actual == expected
+  end
+
+  test "a_week_ago" do
+    expected = {-7, {0, 0, 0}}
+    actual = difference now, a_week_ago
+
+    assert actual == expected
+  end
+
   defp difference(t1, t2) do
     :calendar.time_difference t1, t2
   end

@@ -9,6 +9,7 @@ defmodule GoodTimes do
   @seconds_per_minute 60
   @seconds_per_hour 60*60
   @seconds_per_day 24*60*60
+  @seconds_per_week 7*24*60*60
 
   @type year  :: non_neg_integer
   @type month :: 1..12
@@ -382,4 +383,92 @@ defmodule GoodTimes do
   """
   @spec a_day_ago :: datetime
   def a_day_ago, do: days_ago(1)
+
+  @doc """
+  Returns the UTC date and time the specified weeks after the given datetime.
+
+  ## Examples
+
+      iex> 3 |> weeks_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 3, 20}, {18, 30, 45}}
+  """
+  @spec weeks_after(integer, datetime) :: datetime
+  def weeks_after(weeks, datetime), do: seconds_after(weeks * @seconds_per_week, datetime)
+
+  @doc """
+  Returns the UTC date and time the specified weeks before the given datetime.
+
+  ## Examples
+
+      iex> 3 |> weeks_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 6}, {18, 30, 45}}
+  """
+  @spec weeks_before(integer, datetime) :: datetime
+  def weeks_before(weeks, datetime), do: seconds_before(weeks * @seconds_per_week, datetime)
+
+  @doc """
+  Returns the UTC date and time a week after the given datetime.
+
+  ## Examples
+
+      iex> a_week_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 3, 6}, {18, 30, 45}}
+  """
+  @spec a_week_after(datetime) :: datetime
+  def a_week_after(datetime), do: weeks_after(1, datetime)
+
+  @doc """
+  Returns the UTC date and time a week before the given datetime.
+
+  ## Examples
+
+      iex> a_week_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 2, 20}, {18, 30, 45}}
+  """
+  @spec a_week_before(datetime) :: datetime
+  def a_week_before(datetime), do: weeks_before(1, datetime)
+
+  @doc """
+  Returns the UTC date and time the specified weeks from now.
+
+  ## Examples
+
+      iex> 2 |> weeks_from_now
+      {{2015, 3, 13}, {18, 30, 45}}
+  """
+  @spec weeks_from_now(integer) :: datetime
+  def weeks_from_now(weeks), do: weeks_after(weeks, now)
+
+  @doc """
+  Returns the UTC date and time the specified weeks ago.
+
+  ## Examples
+
+      iex> 2 |> weeks_ago
+      {{2015, 2, 13}, {18, 30, 45}}
+  """
+  @spec weeks_ago(integer) :: datetime
+  def weeks_ago(weeks), do: weeks_before(weeks, now)
+
+  @doc """
+  Returns the UTC date and time a week from now.
+
+   ## Examples
+
+      iex> a_week_from_now
+      {{2015, 3, 6}, {18, 30, 45}}
+  """
+  @spec a_week_from_now :: datetime
+  def a_week_from_now, do: weeks_from_now(1)
+
+  @doc """
+  Returns the UTC date and time a week ago.
+
+   ## Examples
+
+      iex> a_week_ago
+      {{2015, 2, 20}, {18, 30, 45}}
+  """
+  @spec a_week_ago :: datetime
+  def a_week_ago, do: weeks_ago(1)
 end
