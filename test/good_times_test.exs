@@ -172,8 +172,7 @@ defmodule GoodTimesTest do
   end
 
   defp assert_difference(datetime, expected) do
-    actual = difference now, datetime
-    assert actual == expected
+    assert_difference now, datetime, expected
   end
 
   defp assert_difference(datetime1 , datetime2, expected) do
