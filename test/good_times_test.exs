@@ -182,6 +182,14 @@ defmodule GoodTimesTest do
     assert months_before(11, @last_jan_2015) == {{2014, 2, 28}, {12, 0, 0}}
   end
 
+  test "a_month_after" do
+    assert_difference @a_datetime, a_month_after(@a_datetime), {28, {0, 0, 0}}
+  end
+
+  test "a_month_before" do
+    assert_difference @a_datetime, a_month_before(@a_datetime), {-31, {0, 0, 0}}
+  end
+
   defp difference(t1, t2) do
     :calendar.time_difference t1, t2
   end

@@ -518,4 +518,70 @@ defmodule GoodTimes do
   """
   @spec months_before(integer, datetime) :: datetime
   def months_before(months, datetime), do: months_after(-months, datetime)
+
+  @doc """
+  Returns the UTC date and time a month after the given datetime.
+
+  ## Examples
+
+      iex> a_month_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 3, 27}, {18, 30, 45}}
+  """
+  @spec a_month_after(datetime) :: datetime
+  def a_month_after(datetime), do: months_after(1, datetime)
+
+  @doc """
+  Returns the UTC date and time a month before the given datetime.
+
+  ## Examples
+
+      iex> a_month_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 1, 27}, {18, 30, 45}}
+  """
+  @spec a_month_before(datetime) :: datetime
+  def a_month_before(datetime), do: months_before(1, datetime)
+
+  @doc """
+  Returns the UTC date and time the specified months from now.
+
+  ## Examples
+
+      iex> 2 |> months_from_now
+      {{2015, 4, 27}, {18, 30, 45}}
+  """
+  @spec months_from_now(integer) :: datetime
+  def months_from_now(months), do: months_after(months, now)
+
+  @doc """
+  Returns the UTC date and time the specified months ago.
+
+  ## Examples
+
+      iex> 2 |> months_ago
+      {{2014, 12, 27}, {18, 30, 45}}
+  """
+  @spec months_ago(integer) :: datetime
+  def months_ago(months), do: months_before(months, now)
+
+  @doc """
+  Returns the UTC date and time a month from now.
+
+   ## Examples
+
+      iex> a_month_from_now
+      {{2015, 3, 27}, {18, 30, 45}}
+  """
+  @spec a_month_from_now :: datetime
+  def a_month_from_now, do: months_from_now(1)
+
+  @doc """
+  Returns the UTC date and time a month ago.
+
+   ## Examples
+
+      iex> a_month_ago
+      {{2015, 1, 27}, {18, 30, 45}}
+  """
+  @spec a_month_ago :: datetime
+  def a_month_ago, do: months_ago(1)
 end
