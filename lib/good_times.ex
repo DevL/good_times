@@ -7,9 +7,9 @@ defmodule GoodTimes do
   """
 
   @seconds_per_minute 60
-  @seconds_per_hour 60*60
-  @seconds_per_day 24*60*60
-  @seconds_per_week 7*24*60*60
+  @seconds_per_hour 60 * @seconds_per_minute
+  @seconds_per_day 24 * @seconds_per_hour
+  @seconds_per_week 7 * @seconds_per_day
 
   @type year  :: non_neg_integer
   @type month :: 1..12
