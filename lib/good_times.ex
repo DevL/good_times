@@ -519,7 +519,7 @@ defmodule GoodTimes do
   ## Examples
 
       iex> 3 |> months_before {{2015, 2, 27}, {18, 30, 45}}
-      {{2015, 5, 27}, {18, 30, 45}}
+      {{2014, 11, 27}, {18, 30, 45}}
   """
   @spec months_before(integer, datetime) :: datetime
   def months_before(months, datetime), do: months_after(-months, datetime)
