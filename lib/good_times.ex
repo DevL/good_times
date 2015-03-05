@@ -471,4 +471,51 @@ defmodule GoodTimes do
   """
   @spec a_week_ago :: datetime
   def a_week_ago, do: weeks_ago(1)
+
+  @doc """
+  Returns the UTC date and time the specified months after the given datetime.
+
+  ## Examples
+
+      iex> 3 |> months_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 5, 27}, {18, 30, 45}}
+  """
+  @spec months_after(integer, datetime) :: datetime
+  def months_after(months, {{year, month, day}, time}) do
+    {new_year, new_month} = new_year_and_month year, month, months
+    ldom = :calendar.last_day_of_the_month(new_year, new_month)
+    if day <= ldom do
+      {{new_year, new_month, day}, time}
+    else
+      {{new_year, new_month, ldom}, time}
+    end
+  end
+
+  defp new_year_and_month(year, month, months) when months >= 0 do
+    {year, month}
+      |> Stream.unfold(fn ym -> {ym, next_month ym} end)
+      |> Enum.at months
+  end
+
+  defp new_year_and_month(year, month, months) when months < 0 do
+    {year, month}
+      |> Stream.unfold(fn ym -> {ym, previous_month ym} end)
+      |> Enum.at -months
+  end
+
+  defp next_month({year, 12}), do: {year + 1, 1}
+  defp next_month({year, month}), do: {year, month + 1}
+  defp previous_month({year, 1}), do: {year - 1, 12}
+  defp previous_month({year, month}), do: {year, month - 1}
+
+  @doc """
+  Returns the UTC date and time the specified months before the given datetime.
+
+  ## Examples
+
+      iex> 3 |> months_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 5, 27}, {18, 30, 45}}
+  """
+  @spec months_before(integer, datetime) :: datetime
+  def months_before(months, datetime), do: months_after(-months, datetime)
 end

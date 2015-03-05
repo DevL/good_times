@@ -167,6 +167,21 @@ defmodule GoodTimesTest do
     assert_difference a_week_ago, {-7, {0, 0, 0}}
   end
 
+  @last_jan_2015 {{2015, 1, 31}, {12, 0, 0}}
+  test "months_after" do
+    assert months_after(1, @a_datetime) == {{2015, 3, 27}, {18, 30, 45}}
+    assert months_after(1, @last_jan_2015) == {{2015, 2, 28}, {12, 0, 0}}
+    assert months_after(12, @last_jan_2015) == {{2016, 1, 31}, {12, 0, 0}}
+    assert months_after(13, @last_jan_2015) == {{2016, 2, 29}, {12, 0, 0}}
+  end
+
+  test "months_before" do
+    assert months_before(1, @a_datetime) == {{2015, 1, 27}, {18, 30, 45}}
+    assert months_before(1, @last_jan_2015) == {{2014, 12, 31}, {12, 0, 0}}
+    assert months_before(12, @last_jan_2015) == {{2014, 1, 31}, {12, 0, 0}}
+    assert months_before(11, @last_jan_2015) == {{2014, 2, 28}, {12, 0, 0}}
+  end
+
   defp difference(t1, t2) do
     :calendar.time_difference t1, t2
   end
