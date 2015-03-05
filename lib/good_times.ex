@@ -481,32 +481,37 @@ defmodule GoodTimes do
       {{2015, 5, 27}, {18, 30, 45}}
   """
   @spec months_after(integer, datetime) :: datetime
-  def months_after(months, {{year, month, day}, time}) do
-    {new_year, new_month} = new_year_and_month year, month, months
-    ldom = :calendar.last_day_of_the_month(new_year, new_month)
-    if day <= ldom do
-      {{new_year, new_month, day}, time}
-    else
-      {{new_year, new_month, ldom}, time}
-    end
+  def months_after(months, {date, time}), do: {new_date(date, months), time}
+
+  defp new_date(date, months) do
+    date
+    |> new_year_and_month(months)
+    |> adjust_for_last_day_of_month
   end
 
-  defp new_year_and_month(year, month, months) when months >= 0 do
-    {year, month}
-      |> Stream.unfold(fn ym -> {ym, next_month ym} end)
-      |> Enum.at months
+  defp new_year_and_month(date, months) when months >= 0 do
+    date
+    |> Stream.unfold(fn date -> {date, next_month date} end)
+    |> Enum.at months
   end
 
-  defp new_year_and_month(year, month, months) when months < 0 do
-    {year, month}
-      |> Stream.unfold(fn ym -> {ym, previous_month ym} end)
-      |> Enum.at -months
+  defp new_year_and_month(date, months) when months < 0 do
+    date
+    |> Stream.unfold(fn date -> {date, previous_month date} end)
+    |> Enum.at -months
   end
 
-  defp next_month({year, 12}), do: {year + 1, 1}
-  defp next_month({year, month}), do: {year, month + 1}
-  defp previous_month({year, 1}), do: {year - 1, 12}
-  defp previous_month({year, month}), do: {year, month - 1}
+  defp next_month({year, 12, day}), do: {year + 1, 1, day}
+  defp next_month({year, month, day}), do: {year, month + 1, day}
+  defp previous_month({year, 1, day}), do: {year - 1, 12, day}
+  defp previous_month({year, month, day}), do: {year, month - 1, day}
+
+  defp adjust_for_last_day_of_month(date = {year, month, _}), do: {year, month, valid_day(date)}
+
+  defp valid_day({year, month, day}) do
+    [day, :calendar.last_day_of_the_month(year, month)]
+    |> Enum.min
+  end
 
   @doc """
   Returns the UTC date and time the specified months before the given datetime.
