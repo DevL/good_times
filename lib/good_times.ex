@@ -471,4 +471,122 @@ defmodule GoodTimes do
   """
   @spec a_week_ago :: datetime
   def a_week_ago, do: weeks_ago(1)
+
+  @doc """
+  Returns the UTC date and time the specified months after the given datetime.
+
+  ## Examples
+
+      iex> 3 |> months_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 5, 27}, {18, 30, 45}}
+  """
+  @spec months_after(integer, datetime) :: datetime
+  def months_after(months, {date, time}), do: {new_date(date, months), time}
+
+  defp new_date(date, months) do
+    date
+    |> new_year_and_month(months)
+    |> adjust_for_last_day_of_month
+  end
+
+  defp new_year_and_month(date, months) when months >= 0 do
+    date
+    |> Stream.unfold(fn date -> {date, next_month date} end)
+    |> Enum.at months
+  end
+
+  defp new_year_and_month(date, months) when months < 0 do
+    date
+    |> Stream.unfold(fn date -> {date, previous_month date} end)
+    |> Enum.at -months
+  end
+
+  defp next_month({year, 12, day}), do: {year + 1, 1, day}
+  defp next_month({year, month, day}), do: {year, month + 1, day}
+  defp previous_month({year, 1, day}), do: {year - 1, 12, day}
+  defp previous_month({year, month, day}), do: {year, month - 1, day}
+
+  defp adjust_for_last_day_of_month(date = {year, month, _}), do: {year, month, valid_day(date)}
+
+  defp valid_day({year, month, day}) do
+    [day, :calendar.last_day_of_the_month(year, month)]
+    |> Enum.min
+  end
+
+  @doc """
+  Returns the UTC date and time the specified months before the given datetime.
+
+  ## Examples
+
+      iex> 3 |> months_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2014, 11, 27}, {18, 30, 45}}
+  """
+  @spec months_before(integer, datetime) :: datetime
+  def months_before(months, datetime), do: months_after(-months, datetime)
+
+  @doc """
+  Returns the UTC date and time a month after the given datetime.
+
+  ## Examples
+
+      iex> a_month_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 3, 27}, {18, 30, 45}}
+  """
+  @spec a_month_after(datetime) :: datetime
+  def a_month_after(datetime), do: months_after(1, datetime)
+
+  @doc """
+  Returns the UTC date and time a month before the given datetime.
+
+  ## Examples
+
+      iex> a_month_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2015, 1, 27}, {18, 30, 45}}
+  """
+  @spec a_month_before(datetime) :: datetime
+  def a_month_before(datetime), do: months_before(1, datetime)
+
+  @doc """
+  Returns the UTC date and time the specified months from now.
+
+  ## Examples
+
+      iex> 2 |> months_from_now
+      {{2015, 4, 27}, {18, 30, 45}}
+  """
+  @spec months_from_now(integer) :: datetime
+  def months_from_now(months), do: months_after(months, now)
+
+  @doc """
+  Returns the UTC date and time the specified months ago.
+
+  ## Examples
+
+      iex> 2 |> months_ago
+      {{2014, 12, 27}, {18, 30, 45}}
+  """
+  @spec months_ago(integer) :: datetime
+  def months_ago(months), do: months_before(months, now)
+
+  @doc """
+  Returns the UTC date and time a month from now.
+
+   ## Examples
+
+      iex> a_month_from_now
+      {{2015, 3, 27}, {18, 30, 45}}
+  """
+  @spec a_month_from_now :: datetime
+  def a_month_from_now, do: months_from_now(1)
+
+  @doc """
+  Returns the UTC date and time a month ago.
+
+   ## Examples
+
+      iex> a_month_ago
+      {{2015, 1, 27}, {18, 30, 45}}
+  """
+  @spec a_month_ago :: datetime
+  def a_month_ago, do: months_ago(1)
 end
