@@ -190,6 +190,23 @@ defmodule GoodTimesTest do
     assert_difference @a_datetime, a_month_before(@a_datetime), {-31, {0, 0, 0}}
   end
 
+  test "years_after" do
+    assert_difference @a_datetime, years_after(4, @a_datetime), {365+366+365+365, {0, 0, 0}}
+    assert years_after(1, {{2016, 2, 29}, {12, 0, 0}}) == {{2017, 2, 28}, {12, 0, 0}}
+  end
+
+  test "years_before" do
+    assert_difference @a_datetime, years_before(4, @a_datetime), {-(365+365+366+365), {0, 0, 0}}
+  end
+
+  test "a_year_after" do
+    assert_difference @a_datetime, a_year_after(@a_datetime), {365, {0, 0, 0}}
+  end
+
+  test "a_year_before" do
+    assert_difference @a_datetime, a_year_before(@a_datetime), {-365, {0, 0, 0}}
+  end
+
   defp difference(t1, t2) do
     :calendar.time_difference t1, t2
   end
