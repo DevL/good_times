@@ -223,6 +223,22 @@ defmodule GoodTimesTest do
     assert_difference @a_datetime, a_year_before(@a_datetime), {-365, {0, 0, 0}}
   end
 
+  test "years_from_now" do
+    assert years_from_now(5) == years_after(5, now)
+  end
+
+  test "years_ago" do
+    assert years_ago(20) == years_before(20, now)
+  end
+
+  test "a_year_from_now" do
+    assert a_year_from_now == a_year_after now
+  end
+
+  test "a_year_ago" do
+    assert a_year_ago == a_year_before now
+  end
+
   defp difference(t1, t2) do
     :calendar.time_difference t1, t2
   end
