@@ -1,4 +1,6 @@
 defmodule GoodTimes do
+  @vsn "0.6.0"
+
   @moduledoc """
   Convenience time functions.
 
