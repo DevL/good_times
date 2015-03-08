@@ -190,6 +190,22 @@ defmodule GoodTimesTest do
     assert_difference @a_datetime, a_month_before(@a_datetime), {-31, {0, 0, 0}}
   end
 
+  test "months_from_now" do
+    assert months_from_now(18) == months_after(18, now)
+  end
+
+  test "months_ago" do
+    assert months_ago(10) == months_before(10, now)
+  end
+
+  test "a_month_from_now" do
+    assert a_month_from_now == a_month_after now
+  end
+
+  test "a_month_ago" do
+    assert a_month_ago == a_month_before now
+  end
+
   test "years_after" do
     assert_difference @a_datetime, years_after(4, @a_datetime), {365+366+365+365, {0, 0, 0}}
     assert years_after(1, {{2016, 2, 29}, {12, 0, 0}}) == {{2017, 2, 28}, {12, 0, 0}}
