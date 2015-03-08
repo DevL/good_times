@@ -10,6 +10,7 @@ defmodule GoodTimes do
   @seconds_per_hour 60 * @seconds_per_minute
   @seconds_per_day 24 * @seconds_per_hour
   @seconds_per_week 7 * @seconds_per_day
+  @months_per_year 12
 
   @type year  :: non_neg_integer
   @type month :: 1..12
@@ -589,4 +590,92 @@ defmodule GoodTimes do
   """
   @spec a_month_ago :: datetime
   def a_month_ago, do: months_ago(1)
+
+  @doc """
+  Returns the UTC date and time the specified years after the given datetime.
+
+  ## Examples
+
+      iex> 3 |> years_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2018, 2, 27}, {18, 30, 45}}
+  """
+  @spec years_after(integer, datetime) :: datetime
+  def years_after(years, datetime), do: months_after(years * @months_per_year, datetime)
+
+  @doc """
+  Returns the UTC date and time the specified years before the given datetime.
+
+  ## Examples
+
+      iex> 3 |> years_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2012, 2, 27}, {18, 30, 45}}
+  """
+  @spec years_before(integer, datetime) :: datetime
+  def years_before(years, datetime), do: months_before(years * @months_per_year, datetime)
+
+  @doc """
+  Returns the UTC date and time a year after the given datetime.
+
+  ## Examples
+
+      iex> a_year_after {{2015, 2, 27}, {18, 30, 45}}
+      {{2016, 2, 27}, {18, 30, 45}}
+  """
+  @spec a_year_after(datetime) :: datetime
+  def a_year_after(datetime), do: years_after(1, datetime)
+
+  @doc """
+  Returns the UTC date and time a year before the given datetime.
+
+  ## Examples
+
+      iex> a_year_before {{2015, 2, 27}, {18, 30, 45}}
+      {{2014, 2, 27}, {18, 30, 45}}
+  """
+  @spec a_year_before(datetime) :: datetime
+  def a_year_before(datetime), do: years_before(1, datetime)
+
+  @doc """
+  Returns the UTC date and time the specified years from now.
+
+  ## Examples
+
+      iex> 2 |> years_from_now
+      {{2017, 2, 27}, {18, 30, 45}}
+  """
+  @spec years_from_now(integer) :: datetime
+  def years_from_now(years), do: years_after(years, now)
+
+  @doc """
+  Returns the UTC date and time the specified years ago.
+
+  ## Examples
+
+      iex> 2 |> years_ago
+      {{2013, 2, 27}, {18, 30, 45}}
+  """
+  @spec years_ago(integer) :: datetime
+  def years_ago(years), do: years_before(years, now)
+
+  @doc """
+  Returns the UTC date and time a year from now.
+
+   ## Examples
+
+      iex> a_year_from_now
+      {{2016, 2, 27}, {18, 30, 45}}
+  """
+  @spec a_year_from_now :: datetime
+  def a_year_from_now, do: years_from_now(1)
+
+  @doc """
+  Returns the UTC date and time a year ago.
+
+   ## Examples
+
+      iex> a_year_ago
+      {{2014, 2, 27}, {18, 30, 45}}
+  """
+  @spec a_year_ago :: datetime
+  def a_year_ago, do: years_ago(1)
 end
