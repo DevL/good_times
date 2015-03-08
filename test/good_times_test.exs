@@ -190,6 +190,22 @@ defmodule GoodTimesTest do
     assert_difference @a_datetime, a_month_before(@a_datetime), {-31, {0, 0, 0}}
   end
 
+  test "months_from_now" do
+    assert months_from_now(18) == months_after(18, now)
+  end
+
+  test "months_ago" do
+    assert months_ago(10) == months_before(10, now)
+  end
+
+  test "a_month_from_now" do
+    assert a_month_from_now == a_month_after now
+  end
+
+  test "a_month_ago" do
+    assert a_month_ago == a_month_before now
+  end
+
   test "years_after" do
     assert_difference @a_datetime, years_after(4, @a_datetime), {365+366+365+365, {0, 0, 0}}
     assert years_after(1, {{2016, 2, 29}, {12, 0, 0}}) == {{2017, 2, 28}, {12, 0, 0}}
@@ -205,6 +221,22 @@ defmodule GoodTimesTest do
 
   test "a_year_before" do
     assert_difference @a_datetime, a_year_before(@a_datetime), {-365, {0, 0, 0}}
+  end
+
+  test "years_from_now" do
+    assert years_from_now(5) == years_after(5, now)
+  end
+
+  test "years_ago" do
+    assert years_ago(20) == years_before(20, now)
+  end
+
+  test "a_year_from_now" do
+    assert a_year_from_now == a_year_after now
+  end
+
+  test "a_year_ago" do
+    assert a_year_ago == a_year_before now
   end
 
   defp difference(t1, t2) do
