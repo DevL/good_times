@@ -20,7 +20,9 @@ defmodule GoodTimes do
   @type hour   :: 0..23
   @type minute :: 0..59
   @type second :: 0..59
-  @type datetime :: {{year, month, day}, {hour, minute, second}}
+  @type date :: {year, month, day}
+  @type time :: {hour, minute, second}
+  @type datetime :: {date, time}
 
   @doc """
   Returns the current UTC time as a datetime.
@@ -32,6 +34,17 @@ defmodule GoodTimes do
   """
   @spec now :: datetime
   def now, do: :calendar.universal_time
+
+  @doc """
+  Merges the date from the given datetime with another time.
+
+  ## Examples
+
+      iex> now |> at {10, 30, 15}
+      {{2015, 2, 27}, {10, 30, 15}}
+  """
+  @spec at(datetime, time) :: datetime
+  def at({date, _}, time), do: {date, time}
 
   @doc """
   Returns the UTC date and time the specified seconds after the given datetime.

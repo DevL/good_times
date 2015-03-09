@@ -7,6 +7,11 @@ defmodule GoodTimesTest do
   end
 
   @a_datetime {{2015, 2, 27}, {18, 30, 45}}
+
+  test "at" do
+    assert at(@a_datetime, {10, 30, 15}) == {{2015, 2, 27}, {10, 30, 15}}
+  end
+
   test "seconds_after" do
     assert seconds_after(10, @a_datetime) == {{2015, 2, 27}, {18, 30, 55}}
   end
