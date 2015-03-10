@@ -120,7 +120,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a second from now.
 
-   ## Examples
+  ## Examples
 
       iex> a_second_from_now
       {{2015, 2, 27}, {18, 30, 46}}
@@ -205,7 +205,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a minute from now.
 
-   ## Examples
+  ## Examples
 
       iex> a_minute_from_now
       {{2015, 2, 27}, {18, 31, 45}}
@@ -216,7 +216,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a minute ago.
 
-   ## Examples
+  ## Examples
 
       iex> a_minute_ago
       {{2015, 2, 27}, {18, 29, 45}}
@@ -293,7 +293,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time an hour from now.
 
-   ## Examples
+  ## Examples
 
       iex> an_hour_from_now
       {{2015, 2, 27}, {19, 30, 45}}
@@ -304,7 +304,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time an hour ago.
 
-   ## Examples
+  ## Examples
 
       iex> an_hour_ago
       {{2015, 2, 27}, {17, 30, 45}}
@@ -381,7 +381,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a day from now.
 
-   ## Examples
+  ## Examples
 
       iex> a_day_from_now
       {{2015, 2, 28}, {18, 30, 45}}
@@ -392,7 +392,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a day ago.
 
-   ## Examples
+  ## Examples
 
       iex> a_day_ago
       {{2015, 2, 26}, {18, 30, 45}}
@@ -469,7 +469,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a week from now.
 
-   ## Examples
+  ## Examples
 
       iex> a_week_from_now
       {{2015, 3, 6}, {18, 30, 45}}
@@ -480,7 +480,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a week ago.
 
-   ## Examples
+  ## Examples
 
       iex> a_week_ago
       {{2015, 2, 20}, {18, 30, 45}}
@@ -587,7 +587,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a month from now.
 
-   ## Examples
+  ## Examples
 
       iex> a_month_from_now
       {{2015, 3, 27}, {18, 30, 45}}
@@ -598,7 +598,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a month ago.
 
-   ## Examples
+  ## Examples
 
       iex> a_month_ago
       {{2015, 1, 27}, {18, 30, 45}}
@@ -675,7 +675,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a year from now.
 
-   ## Examples
+  ## Examples
 
       iex> a_year_from_now
       {{2016, 2, 27}, {18, 30, 45}}
@@ -686,7 +686,7 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a year ago.
 
-   ## Examples
+  ## Examples
 
       iex> a_year_ago
       {{2014, 2, 27}, {18, 30, 45}}
