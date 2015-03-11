@@ -1,4 +1,21 @@
 defmodule GoodTimes.Generate do
+  @moduledoc """
+  Generate datetimes, starting from an initial datetime and stepping forward or
+  backward by different time units.
+
+  All functions operate on an Erlang datetime, and returns a `Stream` of datetime
+  elements. For example, `all_days_after/1`:
+
+      iex> {{2015, 2, 27}, {18, 30, 45}} |> all_days_after |> Enum.take 3
+      [{{2015, 2, 27}, {18, 30, 45}}, {{2015, 2, 27}, {18, 30, 46}},
+       {{2015, 2, 27}, {18, 30, 47}}]
+
+  There are functions defined stepping a second, minute, hour, week, day, month
+  or year at a time. Step forward with `all_<unit>_after/1`, and backward with
+  `all_<unit>_before/1`.
+  """
+
+
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one second at a time.
