@@ -20,9 +20,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_seconds_after(GoodTimes.datetime) :: Enumerable.t
-  def all_seconds_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_second_after datetime} end)
-  end
+  def all_seconds_after(datetime), do: datetime |> Stream.iterate &a_second_after/1
 
 
   @doc """
@@ -36,9 +34,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_seconds_before(GoodTimes.datetime) :: Enumerable.t
-  def all_seconds_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_second_before datetime} end)
-  end
+  def all_seconds_before(datetime), do: datetime |> Stream.iterate &a_second_before/1
 
 
   @doc """
@@ -52,9 +48,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_minutes_after(GoodTimes.datetime) :: Enumerable.t
-  def all_minutes_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_minute_after datetime} end)
-  end
+  def all_minutes_after(datetime), do: datetime |> Stream.iterate &a_minute_after/1
 
 
   @doc """
@@ -68,9 +62,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_minutes_before(GoodTimes.datetime) :: Enumerable.t
-  def all_minutes_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_minute_before datetime} end)
-  end
+  def all_minutes_before(datetime), do: datetime |> Stream.iterate &a_minute_before/1
 
 
   @doc """
@@ -84,9 +76,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_hours_after(GoodTimes.datetime) :: Enumerable.t
-  def all_hours_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, an_hour_after datetime} end)
-  end
+  def all_hours_after(datetime), do: datetime |> Stream.iterate &an_hour_after/1
 
 
   @doc """
@@ -100,9 +90,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_hours_before(GoodTimes.datetime) :: Enumerable.t
-  def all_hours_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, an_hour_before datetime} end)
-  end
+  def all_hours_before(datetime), do: datetime |> Stream.iterate &an_hour_before/1
 
 
   @doc """
@@ -116,9 +104,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_days_after(GoodTimes.datetime) :: Enumerable.t
-  def all_days_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_day_after datetime} end)
-  end
+  def all_days_after(datetime), do: datetime |> Stream.iterate &a_day_after/1
 
 
   @doc """
@@ -132,9 +118,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_days_before(GoodTimes.datetime) :: Enumerable.t
-  def all_days_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_day_before datetime} end)
-  end
+  def all_days_before(datetime), do: datetime |> Stream.iterate &a_day_before/1
 
 
   @doc """
@@ -148,9 +132,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_weeks_after(GoodTimes.datetime) :: Enumerable.t
-  def all_weeks_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_week_after datetime} end)
-  end
+  def all_weeks_after(datetime), do: datetime |> Stream.iterate &a_week_after/1
 
 
   @doc """
@@ -164,9 +146,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_weeks_before(GoodTimes.datetime) :: Enumerable.t
-  def all_weeks_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_week_before datetime} end)
-  end
+  def all_weeks_before(datetime), do: datetime |> Stream.iterate &a_week_before/1
 
 
   @doc """
@@ -180,9 +160,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_months_after(GoodTimes.datetime) :: Enumerable.t
-  def all_months_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_month_after datetime} end)
-  end
+  def all_months_after(datetime), do: datetime |> Stream.iterate &a_month_after/1
 
 
   @doc """
@@ -196,9 +174,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_months_before(GoodTimes.datetime) :: Enumerable.t
-  def all_months_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_month_before datetime} end)
-  end
+  def all_months_before(datetime), do: datetime |> Stream.iterate &a_month_before/1
 
 
   @doc """
@@ -212,9 +188,7 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_years_after(GoodTimes.datetime) :: Enumerable.t
-  def all_years_after(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_year_after datetime} end)
-  end
+  def all_years_after(datetime), do: datetime |> Stream.iterate &a_year_after/1
 
 
   @doc """
@@ -228,7 +202,5 @@ defmodule GoodTimes.Stream do
        {{2015, 2, 27}, {18, 30, 47}}]
   """
   @spec all_years_before(GoodTimes.datetime) :: Enumerable.t
-  def all_years_before(datetime) do
-    datetime |> Stream.unfold(fn datetime -> {datetime, a_year_before datetime} end)
-  end
+  def all_years_before(datetime), do: datetime |> Stream.iterate &a_year_before/1
 end
