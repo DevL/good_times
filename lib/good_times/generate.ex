@@ -1,4 +1,4 @@
-defmodule GoodTimes.Stream do
+defmodule GoodTimes.Generate do
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one second at a time.

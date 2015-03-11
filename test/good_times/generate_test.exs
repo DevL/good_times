@@ -1,6 +1,6 @@
-defmodule GoodTimes.StreamTest do
+defmodule GoodTimes.GenerateTest do
   use ExUnit.Case
-  import GoodTimes.Stream
+  import GoodTimes.Generate
 
   @a_datetime {{2015, 2, 27}, {18, 30, 45}}
 
