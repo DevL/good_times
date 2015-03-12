@@ -1,5 +1,7 @@
 defmodule GoodTimes do
   @vsn "0.6.0"
+  @doc false
+  def version, do: @vsn
 
   @moduledoc """
   Convenience time functions.
