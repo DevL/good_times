@@ -502,25 +502,17 @@ defmodule GoodTimes do
   defp new_date(date, months) do
     date
     |> new_year_and_month(months)
+    |> adjust_year_and_month
     |> adjust_for_last_day_of_month
   end
 
-  defp new_year_and_month(date, months) when months >= 0 do
-    date
-    |> Stream.unfold(fn date -> {date, next_month date} end)
-    |> Enum.at months
+  defp new_year_and_month({year, month, day}, months) do
+    {year + div(months, 12), month + rem(months, 12), day}
   end
 
-  defp new_year_and_month(date, months) when months < 0 do
-    date
-    |> Stream.unfold(fn date -> {date, previous_month date} end)
-    |> Enum.at -months
-  end
-
-  defp next_month({year, 12, day}), do: {year + 1, 1, day}
-  defp next_month({year, month, day}), do: {year, month + 1, day}
-  defp previous_month({year, 1, day}), do: {year - 1, 12, day}
-  defp previous_month({year, month, day}), do: {year, month - 1, day}
+  defp adjust_year_and_month({year, month, day}) when month < 1, do: {year - 1, month + 12, day}
+  defp adjust_year_and_month({year, month, day}) when month > 12, do: {year + 1, month - 12, day}
+  defp adjust_year_and_month(date), do: date
 
   defp adjust_for_last_day_of_month(date = {year, month, _}), do: {year, month, valid_day(date)}
 
