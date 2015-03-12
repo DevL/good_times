@@ -10,8 +10,8 @@ defmodule GoodTimes.Boundary do
       {{2015, 2, 27}, {18, 30, 0}}
   """
   @spec beginning_of_minute(GoodTimes.datetime) :: GoodTimes.datetime
-  def beginning_of_minute({date, {h, m, _}}) do
-    {date, {h, m, 0}}
+  def beginning_of_minute({date, {hour, minute, _}}) do
+    {date, {hour, minute, 0}}
   end
 
 
@@ -25,8 +25,8 @@ defmodule GoodTimes.Boundary do
 
   """
   @spec end_of_minute(GoodTimes.datetime) :: GoodTimes.datetime
-  def end_of_minute({date, {h, m, _}}) do
-    {date, {h, m, 59}}
+  def end_of_minute({date, {hour, minute, _}}) do
+    {date, {hour, minute, 59}}
   end
 
 
@@ -39,8 +39,8 @@ defmodule GoodTimes.Boundary do
       {{2015, 2, 27}, {18, 0, 0}}
   """
   @spec beginning_of_hour(GoodTimes.datetime) :: GoodTimes.datetime
-  def beginning_of_hour({date, {h, _, _}}) do
-    {date, {h, 0, 0}}
+  def beginning_of_hour({date, {hour, _, _}}) do
+    {date, {hour, 0, 0}}
   end
 
 
@@ -54,8 +54,8 @@ defmodule GoodTimes.Boundary do
 
   """
   @spec end_of_hour(GoodTimes.datetime) :: GoodTimes.datetime
-  def end_of_hour({date, {h, _, _}}) do
-    {date, {h, 59, 59}}
+  def end_of_hour({date, {hour, _, _}}) do
+    {date, {hour, 59, 59}}
   end
 
 
@@ -97,8 +97,8 @@ defmodule GoodTimes.Boundary do
       {{2015, 2, 1}, {0, 0, 0}}
   """
   @spec beginning_of_month(GoodTimes.datetime) :: GoodTimes.datetime
-  def beginning_of_month({{y, m, _}, _}) do
-    {{y, m, 1}, {0, 0, 0}}
+  def beginning_of_month({{year, month, _}, _}) do
+    {{year, month, 1}, {0, 0, 0}}
   end
 
 
@@ -112,8 +112,8 @@ defmodule GoodTimes.Boundary do
 
   """
   @spec end_of_month(GoodTimes.datetime) :: GoodTimes.datetime
-  def end_of_month({{y, m, _}, _}) do
-    {{y, m, :calendar.last_day_of_the_month(y, m)}, {23, 59, 59}}
+  def end_of_month({{year, month, _}, _}) do
+    {{year, month, :calendar.last_day_of_the_month(year, month)}, {23, 59, 59}}
   end
 
 
@@ -126,8 +126,8 @@ defmodule GoodTimes.Boundary do
       {{2015, 1, 1}, {0, 0, 0}}
   """
   @spec beginning_of_year(GoodTimes.datetime) :: GoodTimes.datetime
-  def beginning_of_year({{y, _, _}, _}) do
-    {{y, 1, 1}, {0, 0, 0}}
+  def beginning_of_year({{year, _, _}, _}) do
+    {{year, 1, 1}, {0, 0, 0}}
   end
 
 
@@ -141,7 +141,7 @@ defmodule GoodTimes.Boundary do
 
   """
   @spec end_of_year(GoodTimes.datetime) :: GoodTimes.datetime
-  def end_of_year({{y, _, _}, _}) do
-    {{y, 12, 31}, {23, 59, 59}}
+  def end_of_year({{year, _, _}, _}) do
+    {{year, 12, 31}, {23, 59, 59}}
   end
 end
