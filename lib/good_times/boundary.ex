@@ -1,4 +1,6 @@
 defmodule GoodTimes.Boundary do
+  @vsn GoodTimes.version
+
   @doc """
   Returns the UTC date and time at the start of the given datetime's minute.
 
