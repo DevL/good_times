@@ -22,7 +22,6 @@ defmodule GoodTimes.Boundary do
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_minute
       {{2015, 2, 27}, {18, 30, 59}}
-
   """
   @spec end_of_minute(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_minute({date, {hour, minute, _}}) do
@@ -51,7 +50,6 @@ defmodule GoodTimes.Boundary do
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_hour
       {{2015, 2, 27}, {18, 59, 59}}
-
   """
   @spec end_of_hour(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_hour({date, {hour, _, _}}) do
@@ -80,7 +78,6 @@ defmodule GoodTimes.Boundary do
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_day
       {{2015, 2, 27}, {23, 59, 59}}
-
   """
   @spec end_of_day(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_day({date, _}) do
@@ -109,7 +106,6 @@ defmodule GoodTimes.Boundary do
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_month
       {{2015, 2, 28}, {23, 59, 59}}
-
   """
   @spec end_of_month(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_month({{year, month, _}, _}) do
@@ -138,7 +134,6 @@ defmodule GoodTimes.Boundary do
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_year
       {{2015, 12, 31}, {23, 59, 59}}
-
   """
   @spec end_of_year(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_year({{year, _, _}, _}) do
