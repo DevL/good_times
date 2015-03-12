@@ -10,11 +10,11 @@ defmodule GoodTimes.Convert do
 
   ## Examples
 
-      iex> {{2015, 2, 27}, {18, 30, 45}} |> datetime_to_date
+      iex> {{2015, 2, 27}, {18, 30, 45}} |> to_date
       {2015, 2, 27}
   """
-  @spec datetime_to_date(GoodTimes.datetime) :: GoodTimes.date
-  def datetime_to_date({date, _}), do: date
+  @spec to_date(GoodTimes.datetime) :: GoodTimes.date
+  def to_date({date, _}), do: date
 
 
   @doc """
@@ -22,11 +22,11 @@ defmodule GoodTimes.Convert do
 
   ## Examples
 
-      iex> {{2015, 2, 27}, {18, 30, 45}} |> datetime_to_time
+      iex> {{2015, 2, 27}, {18, 30, 45}} |> to_time
       {18, 30, 45}
   """
-  @spec datetime_to_time(GoodTimes.datetime) :: GoodTimes.time
-  def datetime_to_time({_, time}), do: time
+  @spec to_time(GoodTimes.datetime) :: GoodTimes.time
+  def to_time({_, time}), do: time
 
 
   @doc """
