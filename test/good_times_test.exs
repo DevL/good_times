@@ -6,10 +6,15 @@ defmodule GoodTimesTest do
     assert now == :calendar.universal_time
   end
 
-  @a_datetime {{2015, 2, 27}, {18, 30, 45}}
+  @a_date {2015, 2, 27}
+  @a_datetime {@a_date, {18, 30, 45}}
 
-  test "at" do
+  test "at when passed a datetime" do
     assert at(@a_datetime, {10, 30, 15}) == {{2015, 2, 27}, {10, 30, 15}}
+  end
+
+  test "at when passed a date" do
+    assert at(@a_date, {10, 30, 15}) == {{2015, 2, 27}, {10, 30, 15}}
   end
 
   test "seconds_after" do
