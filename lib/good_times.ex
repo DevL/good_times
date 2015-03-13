@@ -1,5 +1,5 @@
 defmodule GoodTimes do
-  @vsn "0.6.0"
+  @vsn "1.0.0-pre"
   @doc false
   def version, do: @vsn
 
