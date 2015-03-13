@@ -38,15 +38,20 @@ defmodule GoodTimes do
   def now, do: :calendar.universal_time
 
   @doc """
-  Merges the date from the given datetime with another time.
+  Merges the date from the given date or datetime with the given time.
 
   ## Examples
 
       iex> now |> at {10, 30, 15}
       {{2015, 2, 27}, {10, 30, 15}}
+      iex> {2015, 2, 27} |> at {10, 30, 15}
+      {{2015, 2, 27}, {10, 30, 15}}
   """
+  @spec at(date, time) :: datetime
   @spec at(datetime, time) :: datetime
-  def at({date, _}, time), do: {date, time}
+  def at(date_or_datetime, time), do: _at(date_or_datetime, time)
+  defp _at({date, _}, time), do: {date, time}
+  defp _at(date, time), do: {date, time}
 
   @doc """
   Returns the UTC date and time the specified seconds after the given datetime.
