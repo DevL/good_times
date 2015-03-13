@@ -1,4 +1,6 @@
 defmodule GoodTimes.Generate do
+  @vsn GoodTimes.version
+
   @moduledoc """
   Generate datetimes, starting from an initial datetime and stepping forward or
   backward by different time units.
