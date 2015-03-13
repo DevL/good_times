@@ -1,6 +1,22 @@
 defmodule GoodTimes.Boundary do
   @vsn GoodTimes.version
 
+  @moduledoc """
+  Find the boundaries of a unit of time, i.e. the first/last second of a minute,
+  an hour, day, week, month or year.
+
+  All functions take the form `beginning_of_<time unit>/1` and `end_of_<time unit>/1`.
+  They operate on and return an Erlang datetime based on the Coordinated Universal
+  Time (UTC).
+
+  Example:
+
+      iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_month
+      {{2015, 2, 28}, {23, 59, 59}}
+
+  """
+
+
   @doc """
   Returns the UTC date and time at the start of the given datetime's minute.
 
