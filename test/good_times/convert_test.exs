@@ -14,7 +14,7 @@ defmodule GoodTimes.ConvertTest do
     assert to_time(@a_datetime) == @a_time
   end
 
-  test "date_to_datetime" do
-    assert date_to_datetime(@a_date) == {@a_date, {0, 0, 0}}
+  test "from_date" do
+    assert from_date(@a_date) == {@a_date, {0, 0, 0}}
   end
 end
