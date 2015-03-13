@@ -17,7 +17,6 @@ defmodule GoodTimes.Generate do
   `all_<unit>_before/1`.
   """
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one second at a time.
@@ -32,7 +31,6 @@ defmodule GoodTimes.Generate do
   def all_seconds_after(datetime) do
     datetime |> Stream.iterate &GoodTimes.a_second_after/1
   end
-
 
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
@@ -49,7 +47,6 @@ defmodule GoodTimes.Generate do
     datetime |> Stream.iterate &GoodTimes.a_second_before/1
   end
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one minute at a time.
@@ -64,7 +61,6 @@ defmodule GoodTimes.Generate do
   def all_minutes_after(datetime) do
     datetime |> Stream.iterate &GoodTimes.a_minute_after/1
   end
-
 
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
@@ -81,7 +77,6 @@ defmodule GoodTimes.Generate do
     datetime |> Stream.iterate &GoodTimes.a_minute_before/1
   end
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one hour at a time.
@@ -97,7 +92,6 @@ defmodule GoodTimes.Generate do
     datetime |> Stream.iterate &GoodTimes.an_hour_after/1
   end
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going backward one hour at a time.
@@ -112,7 +106,6 @@ defmodule GoodTimes.Generate do
   def all_hours_before(datetime) do
     datetime |> Stream.iterate &GoodTimes.an_hour_before/1
   end
-
 
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
@@ -145,7 +138,6 @@ defmodule GoodTimes.Generate do
     datetime |> Stream.iterate &GoodTimes.a_day_before/1
   end
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one week at a time.
@@ -160,7 +152,6 @@ defmodule GoodTimes.Generate do
   def all_weeks_after(datetime) do
     datetime |> Stream.iterate &GoodTimes.a_week_after/1
   end
-
 
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
@@ -177,7 +168,6 @@ defmodule GoodTimes.Generate do
     datetime |> Stream.iterate &GoodTimes.a_week_before/1
   end
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one month at a time.
@@ -192,7 +182,6 @@ defmodule GoodTimes.Generate do
   def all_months_after(datetime) do
     datetime |> Stream.iterate &GoodTimes.a_month_after/1
   end
-
 
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
@@ -209,7 +198,6 @@ defmodule GoodTimes.Generate do
     datetime |> Stream.iterate &GoodTimes.a_month_before/1
   end
 
-
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
   going forward one year at a time.
@@ -224,7 +212,6 @@ defmodule GoodTimes.Generate do
   def all_years_after(datetime) do
     datetime |> Stream.iterate &GoodTimes.a_year_after/1
   end
-
 
   @doc """
   Returns a Stream of UTC dates and times, starting with the given datetime,
