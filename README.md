@@ -4,7 +4,7 @@
 [![Inline docs](http://inch-ci.org/github/magplus/good_times.svg?branch=master)](http://inch-ci.org/github/magplus/good_times)
 [![Hex.pm](https://img.shields.io/hexpm/v/good_times.svg)](https://hex.pm/packages/good_times)
 
-Easy to use time functions.
+Expressive and easy to use datetime functions.
 
 ## Examples
 

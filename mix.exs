@@ -16,7 +16,7 @@ defmodule GoodTimes.Mixfile do
 
   defp description do
     """
-    Easy to use time functions.
+    Expressive and easy to use datetime functions.
     """
   end
 
