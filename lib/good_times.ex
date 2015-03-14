@@ -27,23 +27,23 @@ defmodule GoodTimes do
   there are the following functions available; all returning a datetime that's
   offset the specified amount of time units.
 
-  * <time_units>_after/2
-  * <time_units>_before/2
-  * <time_units>_from_now/1
-  * <time_units>_ago/1
+  * `<time_units>_after/2`
+  * `<time_units>_before/2`
+  * `<time_units>_from_now/1`
+  * `<time_units>_ago/1`
 
   When only adjusting the datetime by a single time unit, the following
   functions can be used.
 
-  * a_<time_unit>_after/1
-  * a_<time_unit>_before/1
-  * a_<time_unit>_from_now/0
-  * a_<time_unit>_ago/0
+  * `a_<time_unit>_after/1`
+  * `a_<time_unit>_before/1`
+  * `a_<time_unit>_from_now/0`
+  * `a_<time_unit>_ago/0`
 
   In addition, two other functions are included for convenience.
 
-  * now/0 - returning the current datetime
-  * at/2  - merges a given date or datetime with a time
+  * `now/0` - returning the current datetime
+  * `at/2`  - merges a given date or datetime with a time
 
   ## Known limitations
 
