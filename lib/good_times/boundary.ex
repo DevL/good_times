@@ -87,7 +87,7 @@ defmodule GoodTimes.Boundary do
   ## Examples
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> beginning_of_week
-      {{2015, 2, 27}, {0, 0, 0}}
+      {{2015, 2, 23}, {0, 0, 0}}
   """
   @spec beginning_of_week(GoodTimes.datetime) :: GoodTimes.datetime
   def beginning_of_week(datetime) do
@@ -103,7 +103,7 @@ defmodule GoodTimes.Boundary do
   ## Examples
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_week
-      {{2015, 2, 27}, {23, 59, 59}}
+      {{2015, 3, 1}, {23, 59, 59}}
   """
   @spec end_of_week(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_week(datetime) do
