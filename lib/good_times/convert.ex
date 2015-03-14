@@ -13,6 +13,17 @@ defmodule GoodTimes.Convert do
   """
 
   @doc """
+  Converts a date to a datetime with the time set to 00:00:00.
+
+  ## Examples
+
+      iex> {2015, 2, 27} |> from_date
+      {{2015, 2, 27}, {0, 0, 0}}
+  """
+  @spec from_date(GoodTimes.date) :: GoodTimes.datetime
+  def from_date(date), do: {date, {0, 0, 0}}
+
+  @doc """
   Returns the date portion of a datetime.
 
   ## Examples
@@ -33,15 +44,4 @@ defmodule GoodTimes.Convert do
   """
   @spec to_time(GoodTimes.datetime) :: GoodTimes.time
   def to_time({_, time}), do: time
-
-  @doc """
-  Converts a date to a datetime with the time set to 00:00:00.
-
-  ## Examples
-
-      iex> {2015, 2, 27} |> from_date
-      {{2015, 2, 27}, {0, 0, 0}}
-  """
-  @spec from_date(GoodTimes.date) :: GoodTimes.datetime
-  def from_date(date), do: {date, {0, 0, 0}}
 end
