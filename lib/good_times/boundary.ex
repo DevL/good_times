@@ -9,11 +9,10 @@ defmodule GoodTimes.Boundary do
   They operate on and return an Erlang datetime based on the Coordinated Universal
   Time (UTC).
 
-  Example:
+  ## Examples
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> end_of_month
       {{2015, 2, 28}, {23, 59, 59}}
-
   """
 
 
