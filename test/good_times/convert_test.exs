@@ -1,5 +1,4 @@
 defmodule GoodTimes.ConvertTest do
   use ExUnit.Case
-  import GoodTimes.Convert
-  doctest GoodTimes.Convert
+  doctest GoodTimes.Convert, import: true
 end
