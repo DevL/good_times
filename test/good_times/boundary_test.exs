@@ -28,16 +28,16 @@ defmodule GoodTimes.BoundaryTest do
     assert @a_datetime |> end_of_day == {{2015, 2, 27}, {23, 59, 59}}
   end
 
-  @a_monday {{2015, 2, 23}, {18, 30, 45}}
+  @beginning_of_monday {{2015, 2, 23}, {0, 0, 0}}
   test "beginning_of_week" do
-    assert @a_datetime |> beginning_of_week == {{2015, 2, 23}, {0, 0, 0}}
-    assert @a_monday |> beginning_of_week == {{2015, 2, 23}, {0, 0, 0}}
+    assert @a_datetime |> beginning_of_week == @beginning_of_monday
+    assert @beginning_of_monday |> beginning_of_week == {{2015, 2, 23}, {0, 0, 0}}
   end
 
-  @a_sunday {{2015, 3, 1}, {18, 30, 45}}
+  @end_of_sunday {{2015, 3, 1}, {23, 59, 59}}
   test "end_of_week" do
-    assert @a_datetime |> end_of_week == {{2015, 3, 1}, {23, 59, 59}}
-    assert @a_sunday |> end_of_week == {{2015, 3, 1}, {23, 59, 59}}
+    assert @a_datetime |> end_of_week == @end_of_sunday
+    assert @end_of_sunday |> end_of_week == @end_of_sunday
   end
 
   test "beginning_of_month" do
