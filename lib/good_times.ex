@@ -4,10 +4,51 @@ defmodule GoodTimes do
   def version, do: @vsn
 
   @moduledoc """
-  Convenience time functions.
+  Convenient and expressive functions dealing with dates and times.
 
+  This is the core module of the GoodTimes library.
   Unless explicitly stated, all functions operate on and return an
   Erlang datetime based on the Coordinated Universal Time (UTC).
+
+  ## Functions overview
+
+  The following functions are available for each time unit (second, minute,
+  hour, day, week, month, or year); all return a datetime that is offset the
+  specified amount of time units.
+
+  * `<time_units>_after/2`
+  * `<time_units>_before/2`
+  * `<time_units>_from_now/1`
+  * `<time_units>_ago/1`
+
+  You can use the following functions when only adjusting the datetime by a
+  single time unit.
+
+  * `a_<time_unit>_after/1`
+  * `a_<time_unit>_before/1`
+  * `a_<time_unit>_from_now/0`
+  * `a_<time_unit>_ago/0`
+
+  In addition, `now/0` and `at/2` are included for convenience.
+
+  * `now/0` - returns the current datetime
+  * `at/2`  - merges a given date or datetime with a time
+
+  ## Examples
+
+      iex> now
+      {{2015, 2, 27}, {18, 30, 45}}
+      iex> an_hour_ago
+      {{2015, 2, 27}, {17, 30, 45}}
+      iex> a_month_before {{2016, 3, 31}, {9, 30, 0}}
+      {{2016, 2, 29}, {9, 30, 0}}
+      iex> 2 |> weeks_from_now |> at {12, 15, 0}
+      {{2015, 3, 13}, {12, 15, 0}}
+
+  ## Known limitations
+
+  As the entire library builds upon Erlang's calendar module,
+  dates before year 0 are not supported.
   """
 
   @seconds_per_minute 60
