@@ -15,7 +15,6 @@ defmodule GoodTimes.Boundary do
       {{2015, 2, 28}, {23, 59, 59}}
   """
 
-
   @doc """
   Returns the UTC date and time at the start of the given datetime's minute.
 
@@ -26,7 +25,6 @@ defmodule GoodTimes.Boundary do
   """
   @spec beginning_of_minute(GoodTimes.datetime) :: GoodTimes.datetime
   def beginning_of_minute({date, {hour, minute, _}}), do: {date, {hour, minute, 0}}
-
 
   @doc """
   Returns the UTC date and time at the end of the given datetime's minute.
@@ -39,7 +37,6 @@ defmodule GoodTimes.Boundary do
   @spec end_of_minute(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_minute({date, {hour, minute, _}}), do: {date, {hour, minute, 59}}
 
-
   @doc """
   Returns the UTC date and time at the start of the given datetime's hour.
 
@@ -50,7 +47,6 @@ defmodule GoodTimes.Boundary do
   """
   @spec beginning_of_hour(GoodTimes.datetime) :: GoodTimes.datetime
   def beginning_of_hour({date, {hour, _, _}}), do: {date, {hour, 0, 0}}
-
 
   @doc """
   Returns the UTC date and time at the end of the given datetime's hour.
@@ -63,7 +59,6 @@ defmodule GoodTimes.Boundary do
   @spec end_of_hour(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_hour({date, {hour, _, _}}), do: {date, {hour, 59, 59}}
 
-
   @doc """
   Returns the UTC date and time at the start of the given datetime's day.
 
@@ -75,7 +70,6 @@ defmodule GoodTimes.Boundary do
   @spec beginning_of_day(GoodTimes.datetime) :: GoodTimes.datetime
   def beginning_of_day({date, _}), do: {date, {0, 0, 0}}
 
-
   @doc """
   Returns the UTC date and time at the end of the given datetime's day.
 
@@ -86,7 +80,6 @@ defmodule GoodTimes.Boundary do
   """
   @spec end_of_day(GoodTimes.datetime) :: GoodTimes.datetime
   def end_of_day({date, _}), do: {date, {23, 59, 59}}
-
 
   @doc """
   Returns the UTC date and time at the start of the given datetime's week.
@@ -103,7 +96,6 @@ defmodule GoodTimes.Boundary do
     |> find_weekday(1)
     |> GoodTimes.at {0, 0, 0}
   end
-
 
   @doc """
   Returns the UTC date and time at the end of the given datetime's week.
@@ -125,7 +117,6 @@ defmodule GoodTimes.Boundary do
     stream |> Enum.find(fn {date, _} -> weekday == :calendar.day_of_the_week date  end)
   end
 
-
   @doc """
   Returns the UTC date and time at the start of the given datetime's month.
 
@@ -136,7 +127,6 @@ defmodule GoodTimes.Boundary do
   """
   @spec beginning_of_month(GoodTimes.datetime) :: GoodTimes.datetime
   def beginning_of_month({{year, month, _}, _}), do: {{year, month, 1}, {0, 0, 0}}
-
 
   @doc """
   Returns the UTC date and time at the end of the given datetime's month.
@@ -151,7 +141,6 @@ defmodule GoodTimes.Boundary do
     {{year, month, :calendar.last_day_of_the_month(year, month)}, {23, 59, 59}}
   end
 
-
   @doc """
   Returns the UTC date and time at the start of the given datetime's year.
 
@@ -162,7 +151,6 @@ defmodule GoodTimes.Boundary do
   """
   @spec beginning_of_year(GoodTimes.datetime) :: GoodTimes.datetime
   def beginning_of_year({{year, _, _}, _}), do: {{year, 1, 1}, {0, 0, 0}}
-
 
   @doc """
   Returns the UTC date and time at the end of the given datetime's year.

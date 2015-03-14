@@ -2,7 +2,14 @@ defmodule GoodTimes.Convert do
   @vsn GoodTimes.version
 
   @moduledoc """
-  Converts to and from dates, datetimes, and times.
+  Convert to and from dates, datetimes, and times.
+
+  ## Examples
+
+      iex> {{2015, 2, 27}, {18, 30, 45}} |> to_date
+      {2015, 2, 27}
+      iex> {2015, 2, 27} |> from_date
+      {{2015, 2, 27}, {18, 30, 45}}
   """
 
   @doc """
