@@ -6,7 +6,9 @@ defmodule GoodTimes do
   @moduledoc """
   Convenient and expressive functions dealing with dates and times.
 
-  This is the core module of the GoodTimes library.
+  This is the core module of the `GoodTimes` library. For other modules and
+  their functionality, see _Associated modules_ below.
+
   Unless explicitly stated, all functions operate on and return an
   Erlang datetime based on the Coordinated Universal Time (UTC).
 
@@ -49,6 +51,16 @@ defmodule GoodTimes do
 
   As the entire library builds upon Erlang's calendar module,
   dates before year 0 are not supported.
+
+  ## Associated modules
+
+  Aside from the core module, the `GoodTimes` library consistes of these
+  modules.
+
+  * `GoodTimes.Boundary` - find bounderies between time units.
+  * `GoodTimes.Convert`  - convert dates, datetimes and times.
+  * `GoodTimes.Date`     - functions operating on and returning dates.
+  * `GoodTimes.Generate` - functions generating streams of time units.
   """
 
   @seconds_per_minute 60
