@@ -2,12 +2,14 @@ defmodule GoodTimes.Boundary do
   @vsn GoodTimes.version
 
   @moduledoc """
+  Return the first or last second of a unit of time
+
   Find the boundaries of a unit of time, i.e. the first/last second of a minute,
   an hour, day, week, month or year.
 
-  All functions take the form `beginning_of_<time unit>/1` and `end_of_<time unit>/1`.
-  They operate on and return an Erlang datetime based on the Coordinated Universal
-  Time (UTC).
+  Find the first second with `beginning_of_<time unit>/1` and the last second
+  with `end_of_<time unit>/1`. They operate on and return an Erlang datetime
+  based on the Coordinated Universal Time (UTC).
 
   ## Examples
 
