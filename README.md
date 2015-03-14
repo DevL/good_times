@@ -24,7 +24,7 @@ iex(4)> 60 |> seconds_ago
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:good_times, "~> 0.6.0"}]
+  [{:good_times, "~> 1.0.0"}]
 end
 ```
 
