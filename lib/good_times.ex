@@ -10,17 +10,6 @@ defmodule GoodTimes do
   Unless explicitly stated, all functions operate on and return an
   Erlang datetime based on the Coordinated Universal Time (UTC).
 
-  ## Examples
-
-      iex> now
-      {{2015, 2, 27}, {18, 30, 45}}
-      iex> an_hour_ago
-      {{2015, 2, 27}, {17, 30, 45}}
-      iex> a_month_before {{2016, 3, 31}, {9, 30, 0}}
-      {{2016, 2, 29}, {9, 30, 0}}
-      iex> 2 |> weeks_from_now |> at {12, 15, 0}
-      {{2015, 3, 13}, {12, 15, 0}}
-
   ## Functions overview
 
   For any given time unit (second, minute, hour, day, week, month, or year),
@@ -44,6 +33,17 @@ defmodule GoodTimes do
 
   * `now/0` - returning the current datetime
   * `at/2`  - merges a given date or datetime with a time
+
+  ## Examples
+
+      iex> now
+      {{2015, 2, 27}, {18, 30, 45}}
+      iex> an_hour_ago
+      {{2015, 2, 27}, {17, 30, 45}}
+      iex> a_month_before {{2016, 3, 31}, {9, 30, 0}}
+      {{2016, 2, 29}, {9, 30, 0}}
+      iex> 2 |> weeks_from_now |> at {12, 15, 0}
+      {{2015, 3, 13}, {12, 15, 0}}
 
   ## Known limitations
 
