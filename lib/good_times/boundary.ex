@@ -2,7 +2,7 @@ defmodule GoodTimes.Boundary do
   @vsn GoodTimes.version
 
   @moduledoc """
-  Return the first or last second of a unit of time
+  Return the first or last second of a unit of time.
 
   Find the boundaries of a unit of time, i.e. the first/last second of a minute,
   an hour, day, week, month or year.
