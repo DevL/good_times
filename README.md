@@ -51,8 +51,8 @@ Import the module or modules holding the functions you want to use.
 ```elixir
 defmodule MyModule do
   import GoodTimes            # core functions.
-  import GoodTimes.Boundary   # find bounderies between time units.
-  import GoodTimes.Convert    # convert dates, datetimes and times.
+  import GoodTimes.Boundary   # find boundaries between time units.
+  import GoodTimes.Convert    # convert between dates, datetimes and times.
   import GoodTimes.Date       # functions operating on and returning dates.
   import GoodTimes.Generate   # functions generating streams of time units.
 ```
