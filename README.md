@@ -8,7 +8,7 @@ Expressive and easy to use datetime functions.
 
 ## Examples
 
-```
+```elixir
 iex> import GoodTimes
 nil
 iex> now
