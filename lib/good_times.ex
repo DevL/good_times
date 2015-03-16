@@ -191,7 +191,8 @@ defmodule GoodTimes do
   @doc """
   Returns the UTC date and time a second ago.
 
-  `a_second_ago # => {{2015, 2, 27}, {18, 30, 44}}`
+      iex> a_second_ago
+      {{2015, 2, 27}, {18, 30, 44}}
   """
   @spec a_second_ago :: datetime
   def a_second_ago, do: seconds_ago(1)
