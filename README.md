@@ -6,6 +6,10 @@
 
 Expressive and easy to use datetime functions.
 
+> Unbelivably nice...I'm proud that we have this.
+>
+> -- _Josh Adams, [Elixir sips](http://elixirsips.com) episode 145_
+
 ## Examples
 
 ```elixir
