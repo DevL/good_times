@@ -1,5 +1,5 @@
 defmodule GoodTimes.DateTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import GoodTimes
   import GoodTimes.Convert
   import GoodTimes.Date

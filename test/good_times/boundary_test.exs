@@ -1,5 +1,5 @@
 defmodule GoodTimes.BoundaryTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import GoodTimes.Boundary
   doctest GoodTimes.Boundary
 

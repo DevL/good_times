@@ -1,5 +1,5 @@
 defmodule GoodTimesTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import GoodTimes
   doctest GoodTimes, except: [
     nil, # to exclude moduledoc
