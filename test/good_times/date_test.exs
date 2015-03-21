@@ -9,7 +9,6 @@ defmodule GoodTimes.DateTest do
   end
 
   test "tomorrow" do
-
     assert tomorrow == to_date(a_day_from_now)
   end
 
