@@ -1,7 +1,7 @@
 # GoodTimes
 
-[![Build Status](https://travis-ci.org/magplus/good_times.svg?branch=master)](https://travis-ci.org/magplus/good_times)
-[![Inline docs](http://inch-ci.org/github/magplus/good_times.svg?branch=master)](http://inch-ci.org/github/magplus/good_times)
+[![Build Status](https://travis-ci.org/DevL/good_times.svg?branch=master)](https://travis-ci.org/DevL/good_times)
+[![Inline docs](http://inch-ci.org/github/DevL/good_times.svg?branch=master)](http://inch-ci.org/github/DevL/good_times)
 [![Hex.pm](https://img.shields.io/hexpm/v/good_times.svg)](https://hex.pm/packages/good_times)
 
 Expressive and easy to use datetime functions.
