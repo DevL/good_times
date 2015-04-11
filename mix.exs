@@ -6,7 +6,7 @@ defmodule GoodTimes.Mixfile do
       app: :good_times,
       version: "1.0.0",
       name: "GoodTimes",
-      source_url: "https://github.com/magplus/good_times",
+      source_url: "https://github.com/DevL/good_times",
       elixir: "~> 1.0",
       deps: deps,
       description: description,
@@ -25,7 +25,7 @@ defmodule GoodTimes.Mixfile do
       contributors: ["Lennart Fridén", "Martin Svalin"],
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/magplus/good_times"}
+      links: %{"GitHub" => "https://github.com/DevL/good_times"}
     ]
   end
 
