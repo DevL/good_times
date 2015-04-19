@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/DevL/good_times.svg?branch=master)](https://travis-ci.org/DevL/good_times)
 [![Inline docs](http://inch-ci.org/github/DevL/good_times.svg?branch=master)](http://inch-ci.org/github/DevL/good_times)
 [![Hex.pm](https://img.shields.io/hexpm/v/good_times.svg)](https://hex.pm/packages/good_times)
+[![Documentation](https://img.shields.io/badge/Documentation-online-c800c8.svg)](http://hexdocs.pm/good_times)
 
 Expressive and easy to use datetime functions.
 
@@ -66,3 +67,15 @@ For more information, see [the full documentation](http://hexdocs.pm/good_times/
 ## Known limitations
 
 As GoodTimes uses [Erlangs calendar module](http://erlang.org/doc/man/calendar.html), dates and times before year 0 aren't supported.
+
+## Online documentation
+
+For more information, see [the full documentation](http://hexdocs.pm/good_times).
+
+## Contributing
+
+1. Fork this repository
+2. Create your feature branch (`git checkout -b better-times`)
+3. Commit your changes (`git commit -am 'Let the good times roll!'`)
+4. Push to the branch (`git push origin better-times`)
+5. Create a new Pull Request
