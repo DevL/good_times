@@ -48,7 +48,7 @@ iex> all_days_after({{2016, 2, 28}, {10, 0, 0}}) |> Enum.take 3
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:good_times, "~> 1.0.0"}]
+  [{:good_times, "~> 1.0"}]
 end
 ```
 
