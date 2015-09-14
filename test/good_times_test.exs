@@ -3,6 +3,7 @@ defmodule GoodTimesTest do
   import GoodTimes
   doctest GoodTimes, except: [
     nil, # to exclude moduledoc
+    :moduledoc,
     now: 0, at: 2,
     seconds_from_now: 1, a_second_from_now: 0, seconds_ago: 1, a_second_ago: 0,
     minutes_from_now: 1, a_minute_from_now: 0, minutes_ago: 1, a_minute_ago: 0,
