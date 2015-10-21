@@ -22,7 +22,7 @@ defmodule GoodTimes.Mixfile do
 
   defp package do
     [
-      contributors: ["Lennart Fridén", "Martin Svalin"],
+      maintainers: ["Lennart Fridén", "Martin Svalin"],
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/DevL/good_times"}
@@ -36,7 +36,7 @@ defmodule GoodTimes.Mixfile do
   defp deps do
     [
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.7", only: :dev},
+      {:ex_doc, "~> 0.10", only: :dev},
       {:inch_ex, only: :docs}
     ]
   end
