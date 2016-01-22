@@ -30,7 +30,7 @@ iex> import GoodTimes.Date
 nil
 iex> yesterday
 {2015, 3, 15}
-iex> tomorrow |> at {12, 30, 0}
+iex> tomorrow |> at({12, 30, 0})
 {{2015, 3, 17}, {12, 30, 0}}
 iex> import GoodTimes.Boundary
 nil
@@ -38,7 +38,7 @@ iex> now |> end_of_week
 {{2015, 3, 22}, {23, 59, 59}}
 iex> import GoodTimes.Generate
 nil
-iex> all_days_after({{2016, 2, 28}, {10, 0, 0}}) |> Enum.take 3
+iex> all_days_after({{2016, 2, 28}, {10, 0, 0}}) |> Enum.take(3)
 [{{2016, 2, 28}, {10, 0, 0}}, {{2016, 2, 29}, {10, 0, 0}},
  {{2016, 3, 1}, {10, 0, 0}}]
 ```
@@ -48,7 +48,7 @@ iex> all_days_after({{2016, 2, 28}, {10, 0, 0}}) |> Enum.take 3
 Update your `mix.exs` file and run `mix deps.get`.
 ```elixir
 defp deps do
-  [{:good_times, "~> 1.0"}]
+  [{:good_times, "~> 1.1"}]
 end
 ```
 
