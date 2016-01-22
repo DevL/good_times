@@ -111,7 +111,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 15 |> seconds_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 15 |> seconds_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 31, 0}}
   """
   @spec seconds_after(integer, datetime) :: datetime
@@ -127,7 +127,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 15 |> seconds_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 15 |> seconds_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 30, 30}}
   """
   @spec seconds_before(integer, datetime) :: datetime
@@ -138,7 +138,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_second_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_second_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 30, 46}}
   """
   @spec a_second_after(datetime) :: datetime
@@ -149,7 +149,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_second_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_second_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 30, 44}}
   """
   @spec a_second_before(datetime) :: datetime
@@ -202,7 +202,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 15 |> minutes_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 15 |> minutes_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 45, 45}}
   """
   @spec minutes_after(integer, datetime) :: datetime
@@ -213,7 +213,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 15 |> minutes_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 15 |> minutes_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 15, 45}}
   """
   @spec minutes_before(integer, datetime) :: datetime
@@ -224,7 +224,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_minute_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_minute_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 31, 45}}
   """
   @spec a_minute_after(datetime) :: datetime
@@ -235,7 +235,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_minute_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_minute_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {18, 29, 45}}
   """
   @spec a_minute_before(datetime) :: datetime
@@ -290,7 +290,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 15 |> hours_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 15 |> hours_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 28}, {9, 30, 45}}
   """
   @spec hours_after(integer, datetime) :: datetime
@@ -301,7 +301,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 15 |> hours_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 15 |> hours_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {3, 30, 45}}
   """
   @spec hours_before(integer, datetime) :: datetime
@@ -312,7 +312,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> an_hour_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> an_hour_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {19, 30, 45}}
   """
   @spec an_hour_after(datetime) :: datetime
@@ -323,7 +323,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> an_hour_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> an_hour_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 27}, {17, 30, 45}}
   """
   @spec an_hour_before(datetime) :: datetime
@@ -378,7 +378,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> days_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> days_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 3, 2}, {18, 30, 45}}
   """
   @spec days_after(integer, datetime) :: datetime
@@ -389,7 +389,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> days_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> days_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 24}, {18, 30, 45}}
   """
   @spec days_before(integer, datetime) :: datetime
@@ -400,7 +400,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_day_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_day_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 28}, {18, 30, 45}}
   """
   @spec a_day_after(datetime) :: datetime
@@ -411,7 +411,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_day_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_day_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 26}, {18, 30, 45}}
   """
   @spec a_day_before(datetime) :: datetime
@@ -466,7 +466,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> weeks_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> weeks_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 3, 20}, {18, 30, 45}}
   """
   @spec weeks_after(integer, datetime) :: datetime
@@ -477,7 +477,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> weeks_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> weeks_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 6}, {18, 30, 45}}
   """
   @spec weeks_before(integer, datetime) :: datetime
@@ -488,7 +488,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_week_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_week_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 3, 6}, {18, 30, 45}}
   """
   @spec a_week_after(datetime) :: datetime
@@ -499,7 +499,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_week_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_week_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 2, 20}, {18, 30, 45}}
   """
   @spec a_week_before(datetime) :: datetime
@@ -554,7 +554,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> months_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> months_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 5, 27}, {18, 30, 45}}
   """
   @spec months_after(integer, datetime) :: datetime
@@ -587,7 +587,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> months_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> months_before({{2015, 2, 27}, {18, 30, 45}})
       {{2014, 11, 27}, {18, 30, 45}}
   """
   @spec months_before(integer, datetime) :: datetime
@@ -598,7 +598,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_month_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_month_after({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 3, 27}, {18, 30, 45}}
   """
   @spec a_month_after(datetime) :: datetime
@@ -609,7 +609,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_month_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_month_before({{2015, 2, 27}, {18, 30, 45}})
       {{2015, 1, 27}, {18, 30, 45}}
   """
   @spec a_month_before(datetime) :: datetime
@@ -664,7 +664,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> years_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> years_after({{2015, 2, 27}, {18, 30, 45}})
       {{2018, 2, 27}, {18, 30, 45}}
   """
   @spec years_after(integer, datetime) :: datetime
@@ -675,7 +675,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> 3 |> years_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> 3 |> years_before({{2015, 2, 27}, {18, 30, 45}})
       {{2012, 2, 27}, {18, 30, 45}}
   """
   @spec years_before(integer, datetime) :: datetime
@@ -686,7 +686,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_year_after {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_year_after({{2015, 2, 27}, {18, 30, 45}})
       {{2016, 2, 27}, {18, 30, 45}}
   """
   @spec a_year_after(datetime) :: datetime
@@ -697,7 +697,7 @@ defmodule GoodTimes do
 
   ## Examples
 
-      iex> a_year_before {{2015, 2, 27}, {18, 30, 45}}
+      iex> a_year_before({{2015, 2, 27}, {18, 30, 45}})
       {{2014, 2, 27}, {18, 30, 45}}
   """
   @spec a_year_before(datetime) :: datetime

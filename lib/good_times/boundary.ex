@@ -96,7 +96,7 @@ defmodule GoodTimes.Boundary do
     datetime
     |> GoodTimes.Generate.all_days_before
     |> find_weekday(1)
-    |> GoodTimes.at {0, 0, 0}
+    |> GoodTimes.at({0, 0, 0})
   end
 
   @doc """
@@ -112,11 +112,11 @@ defmodule GoodTimes.Boundary do
     datetime
     |> GoodTimes.Generate.all_days_after
     |> find_weekday(7)
-    |> GoodTimes.at {23, 59, 59}
+    |> GoodTimes.at({23, 59, 59})
   end
 
   defp find_weekday(stream, weekday) do
-    stream |> Enum.find(fn {date, _} -> weekday == :calendar.day_of_the_week date  end)
+    stream |> Enum.find(fn {date, _} -> weekday == :calendar.day_of_the_week date end)
   end
 
   @doc """
