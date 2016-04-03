@@ -4,10 +4,10 @@ defmodule GoodTimes.Mixfile do
   def project do
     [
       app: :good_times,
-      version: "1.1.1",
+      version: "1.2.0",
       name: "GoodTimes",
       source_url: "https://github.com/DevL/good_times",
-      elixir: "~> 1.0",
+      elixir: "~> 1.3",
       deps: deps,
       description: description,
       package: package
@@ -37,6 +37,7 @@ defmodule GoodTimes.Mixfile do
     [
       {:earmark, "~> 0.2", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
+      {:mix_test_watch, "~> 0.2", only: :dev},
       {:inch_ex, ">= 0.4.0", only: :docs}
     ]
   end
