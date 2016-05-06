@@ -84,13 +84,13 @@ defmodule GoodTimes.Convert do
   ## Examples
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> to_elixir_datetime
-      %DateTime{year: 2015, month: 2, day: 27, hour: 18, minute: 30, second: 45, micro_second: 0, calendar: Calendar.ISO, std_offset: nil, time_zone: nil, utc_offset: nil, zone_abbr: nil}
+      %DateTime{year: 2015, month: 2, day: 27, hour: 18, minute: 30, second: 45, microsecond: 0, calendar: Calendar.ISO, std_offset: nil, time_zone: nil, utc_offset: nil, zone_abbr: nil}
   """
   @spec to_elixir_datetime(GoodTimes.datetime) :: DateTime.t
   def to_elixir_datetime({{year, month, day}, {hour, minute, second}}) do
     %DateTime{
       calendar: Calendar.ISO, year: year, month: month, day: day,
-      hour: hour, minute: minute, second: second, micro_second: 0,
+      hour: hour, minute: minute, second: second, microsecond: 0,
       std_offset: nil, time_zone: nil, utc_offset: nil, zone_abbr: nil
     }
   end

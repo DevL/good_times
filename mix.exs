@@ -7,7 +7,7 @@ defmodule GoodTimes.Mixfile do
       version: "1.2.0",
       name: "GoodTimes",
       source_url: "https://github.com/DevL/good_times",
-      elixir: "~> 1.3",
+      elixir: "~> 1.3.0-dev",
       deps: deps,
       description: description,
       package: package
