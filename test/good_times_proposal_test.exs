@@ -67,7 +67,7 @@ defmodule GoodTimesProposalTest do
       assert {1, 0} = add(~T[12:00:00], 1, :microseconds, precision: 0).microsecond
     end
 
-    test "sub-second cannot be set for erlang tuple time" do
+    test "sub-second cannot be set for erlang time tuple" do
       assert_raise ArgumentError, fn -> add({12, 0, 0}, 1, :millisecond) end
       assert_raise ArgumentError, fn -> add({12, 0, 0}, 1, :microsecond) end
     end
@@ -164,8 +164,30 @@ defmodule GoodTimesProposalTest do
       assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :year) == {{2017, 6, 6}, {23, 59, 59}}
     end
 
+    test "millisecond" do
+      assert add(~N[2016-06-06 23:59:59], 1, :millisecond) == ~N[2016-06-06 23:59:59.001]
+    end
 
-    test "millisecond"
-    test "microsecond"
+    test "microsecond" do
+      assert add(~N[2016-06-06 23:59:59], 1, :microsecond) == ~N[2016-06-06 23:59:59.000001]
+    end
+
+    test "count significant digits for precision" do
+      assert {100_100, 4} = add(~N[2016-06-06 12:00:00], 100_100, :microseconds).microsecond
+    end
+
+    test "imprecise value can lose precision on original time" do
+      assert {100_001, 1} = add(~N[2016-06-06 12:00:00.000001], 100_000, :microseconds).microsecond
+    end
+
+    test "microseconds with specified precision" do
+      assert {100_000, 6} = add(~N[2016-06-06 12:00:00], 100_000, :microseconds, precision: 6).microsecond
+      assert {1, 0} = add(~N[2016-06-06 12:00:00], 1, :microseconds, precision: 0).microsecond
+    end
+
+    test "sub-second cannot be set for erlang datetime tuple" do
+      assert_raise ArgumentError, fn -> add({{2016, 6, 6}, {12, 0, 0}}, 1, :millisecond) end
+      assert_raise ArgumentError, fn -> add({{2016, 6, 6}, {12, 0, 0}}, 1, :microsecond) end
+    end
   end
 end

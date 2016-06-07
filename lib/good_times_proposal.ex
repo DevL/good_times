@@ -131,7 +131,7 @@ defmodule GoodTimesProposal do
   Sub-second units are not supported for Erlang time tuples.
 
       iex> {12, 30, 0} |> GoodTimesProposal.add(1, :millisecond)
-      ** (ArgumentError) Cannot add millisecond to Erlang time tuples
+      ** (ArgumentError) Cannot add millisecond to Erlang time tuple
 
   You can retrieve the current NaiveDateTime with `now/0`. This is a breaking
   change from the 1.x behaviour. Get an Erlang datetime tuple with `now/1`.
@@ -276,7 +276,7 @@ defmodule GoodTimesProposal do
   Sub-second units are not supported for Erlang time tuples.
 
       iex> {12, 30, 0} |> GoodTimesProposal.add(1, :millisecond)
-      ** (ArgumentError) Cannot add millisecond to Erlang time tuples
+      ** (ArgumentError) Cannot add millisecond to Erlang time tuple
   """
   @spec add(moment, integer, unit) :: moment
   @spec add(moment, integer, unit, Keyword.t) :: moment
@@ -291,7 +291,7 @@ defmodule GoodTimesProposal do
         {{h, m, s}, unit} when unit in @time_units and h in 0..23 and m in 0..59 and s in 0..60 ->
           add_time(moment, n, unit, opts)
         {{_,_,_}, unit} when unit in @subsecond_units ->
-          raise ArgumentError, "Cannot add #{unit} to Erlang time tuples"
+          raise ArgumentError, "Cannot add #{unit} to Erlang time tuple"
         {%Time{}, unit} ->
           raise ArgumentError, "Cannot add #{unit} to time"
         {{h, m, s}, unit} when h in 0..23 and m in 0..59 and s in 0..60 ->
@@ -309,7 +309,7 @@ defmodule GoodTimesProposal do
         {%NaiveDateTime{}, _} ->
           add_datetime(moment, n, unit, opts)
         {{{_,_,_}, {_,_,_}}, unit} when unit in @subsecond_units ->
-          raise ArgumentError, "Sub-second units are not supported for Erlang datetime tuples"
+          raise ArgumentError, "Cannot add #{unit} to Erlang datetime tuple"
         {{{_,_,_}, {_,_,_}}, _} ->
           add_datetime(moment, n, unit, opts)
       end
@@ -317,13 +317,8 @@ defmodule GoodTimesProposal do
   end
 
   defp add_time(%Time{} = time, n, unit, opts) when unit in [:microsecond, :microseconds] do
-    {us, _precision} = time.microsecond
-    total_us = us + n
-    seconds = div(total_us, 1_000_000)
-    new_us = rem(total_us, 1_000_000)
-    new_time = add_time(time, seconds, :seconds, opts)
-
-    %{new_time | microsecond: {new_us, opts[:precision] || 6 - trailing_zeroes(n)}}
+    {seconds, microseconds} = add_microseconds(time, n, opts)
+    %{add_time(time, seconds, :seconds, opts) | microsecond: microseconds}
   end
   defp add_time(%Time{} = time, n, unit, opts) when unit in [:millisecond, :milliseconds], do:
     add_time(time, n * 1000, :microseconds, opts)
@@ -343,6 +338,15 @@ defmodule GoodTimesProposal do
   defp add_time(time, n, unit, opts) when unit in [:hour, :hours], do:
     add_time(time, n * 60*60, :seconds, opts)
 
+  defp add_microseconds(time, n, opts) do
+    {us, _precision} = time.microsecond
+    total_us = us + n
+    seconds = div(total_us, 1_000_000)
+    new_us = rem(total_us, 1_000_000)
+    new_precision = opts[:precision] || 6 - trailing_zeroes(n)
+
+    {seconds, {new_us, new_precision}}
+  end
 
   defp trailing_zeroes(n) do
     Enum.find(6..0, fn exp -> trunc(n / :math.pow(10, exp)) * :math.pow(10, exp) == n end)
@@ -384,6 +388,12 @@ defmodule GoodTimesProposal do
     {year, month, Enum.min([day, :calendar.last_day_of_the_month(year, month)])}
   end
 
+  defp add_datetime(%NaiveDateTime{} = dt, n, unit, opts) when unit in [:microsecond, :microseconds] do
+    {seconds, microseconds} = add_microseconds(dt, n, opts)
+    %{add_datetime(dt, seconds, :seconds, opts) | microsecond: microseconds}
+  end
+  defp add_datetime(%NaiveDateTime{} = dt, n, unit, opts) when unit in [:millisecond, :milliseconds], do:
+    add_datetime(dt, n*1000, :microseconds, opts)
   defp add_datetime(%NaiveDateTime{} = dt, n, unit, opts) do
     dt
     |> NaiveDateTime.to_erl
