@@ -361,18 +361,18 @@ defmodule GoodTimesProposal do
   defp add_date({_,_,_} = date, n, unit, opts) when unit in [:week, :weeks], do:
     add_date(date, n * 7, :days, opts)
   defp add_date({_,_,_} = date, n, unit, _opts) when unit in [:month, :months], do:
-    new_date(date, n)
+    add_months(date, n)
   defp add_date({_,_,_} = date, n, unit, opts) when unit in [:year, :years], do:
     add_date(date, n * 12, :months, opts)
 
-  defp new_date(date, months) do
+  defp add_months(date, months) do
     date
-    |> new_year_and_month(months)
+    |> simple_add_month(months)
     |> adjust_for_new_year
     |> adjust_for_last_day_of_month
   end
 
-  defp new_year_and_month({year, month, day}, months) do
+  defp simple_add_month({year, month, day}, months) do
     {year + div(months, 12), month + rem(months, 12), day}
   end
 
@@ -395,7 +395,19 @@ defmodule GoodTimesProposal do
     :calendar.datetime_to_gregorian_seconds(dt) + n
     |> :calendar.gregorian_seconds_to_datetime
   end
-
+  defp add_datetime(dt, n, unit, opts) when unit in [:minute, :minutes], do:
+    add_datetime(dt, n*60, :seconds, opts)
+  defp add_datetime(dt, n, unit, opts) when unit in [:hour, :hours], do:
+    add_datetime(dt, n*60*60, :seconds, opts)
+  defp add_datetime(dt, n, unit, opts) when unit in [:day, :days], do:
+    add_datetime(dt, n*60*60*24, :seconds, opts)
+  defp add_datetime(dt, n, unit, opts) when unit in [:week, :weeks], do:
+    add_datetime(dt, n*60*60*24*7, :seconds, opts)
+  defp add_datetime({date, time}, n, unit, _opts) when unit in [:month, :months] do
+    {add_months(date, n), time}
+  end
+  defp add_datetime(dt, n, unit, opts) when unit in [:year, :years], do:
+    add_datetime(dt, n*12, :months, opts)
   # def add(%Date{} = date, n, unit, opts) when unit in [:month, :months], do: ...
   # def add(%Date{} = date, n, unit, opts) when unit in [:year, :years], do: ...
 
@@ -894,7 +906,7 @@ defmodule GoodTimesProposal do
       {{2015, 5, 27}, {18, 30, 45}}
   """
   @spec months_after(integer, datetime) :: datetime
-  def months_after(months, {date, time}), do: {new_date(date, months), time}
+  def months_after(months, {date, time}), do: {add_months(date, months), time}
 
   @doc """
   Returns the UTC date and time the specified months before the given datetime.

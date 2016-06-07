@@ -133,5 +133,39 @@ defmodule GoodTimesProposalTest do
       assert add(~N[2016-06-06 23:59:59], 1, :second) == ~N[2016-06-07 00:00:00]
       assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :second) == {{2016, 6, 7}, {0, 0, 0}}
     end
+
+    test "minute" do
+      assert add(~N[2016-06-06 23:59:59], 1, :minute) == ~N[2016-06-07 00:00:59]
+      assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :minute) == {{2016, 6, 7}, {0, 0, 59}}
+    end
+
+    test "hour" do
+      assert add(~N[2016-06-06 23:59:59], 1, :hour) == ~N[2016-06-07 00:59:59]
+      assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :hour) == {{2016, 6, 7}, {0, 59, 59}}
+    end
+
+    test "day" do
+      assert add(~N[2016-06-06 23:59:59], 1, :day) == ~N[2016-06-07 23:59:59]
+      assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :day) == {{2016, 6, 7}, {23, 59, 59}}
+    end
+
+    test "week" do
+      assert add(~N[2016-06-06 23:59:59], 1, :week) == ~N[2016-06-13 23:59:59]
+      assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :week) == {{2016, 6, 13}, {23, 59, 59}}
+    end
+
+    test "month" do
+      assert add(~N[2016-06-06 23:59:59], 1, :month) == ~N[2016-07-06 23:59:59]
+      assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :month) == {{2016, 7, 6}, {23, 59, 59}}
+    end
+
+    test "year" do
+      assert add(~N[2016-06-06 23:59:59], 1, :year) == ~N[2017-06-06 23:59:59]
+      assert add({{2016, 6, 6}, {23, 59, 59}}, 1, :year) == {{2017, 6, 6}, {23, 59, 59}}
+    end
+
+
+    test "millisecond"
+    test "microsecond"
   end
 end
