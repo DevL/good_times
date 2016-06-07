@@ -126,6 +126,17 @@ defmodule GoodTimesProposalTest do
       assert_raise ArgumentError, fn -> add({2016, 6, 6}, 2, :minutes) end
       assert_raise ArgumentError, fn -> add({2016, 6, 6}, 2, :hours) end
     end
+
+    test "leap year" do
+      assert add(~D[2015-02-28], 1, :day) == ~D[2015-03-01]
+      assert add(~D[2016-02-28], 1, :day) == ~D[2016-02-29]
+      assert add(~D[2015-02-28], 1, :year) == ~D[2016-02-28]
+      assert add(~D[2016-02-29], 1, :year) == ~D[2017-02-28]
+    end
+
+    test "add month into shorter month" do
+      assert add(~D[2016-05-31], 1, :month) == ~D[2016-06-30]
+    end
   end
 
   describe "add to datetime" do
