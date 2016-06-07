@@ -64,115 +64,115 @@ defmodule GoodTimesProposal do
 
   You can add a unit of time to a Date, Time or NaiveDateTime.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(1, :day)
+      iex> ~D[2016-06-03] |> add(1, :day)
       ~D[2016-06-04]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(15, :seconds)
+      iex> ~T[12:30:00] |> add(15, :seconds)
       ~T[12:30:15]
-      iex> ~N[2016-06-03 12:30:00] |> GoodTimesProposal.add(12, :hours)
+      iex> ~N[2016-06-03 12:30:00] |> add(12, :hours)
       ~N[2016-06-04 00:30:00]
 
   You can add negative units of time, unless `:not_negative` is set. Also see
   `subtract/2` and `subtract/3`.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(-1, :day)
+      iex> ~D[2016-06-03] |> add(-1, :day)
       ~D[2016-06-02]
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(-1, :day, not_negative: true)
+      iex> ~D[2016-06-03] |> add(-1, :day, not_negative: true)
       ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Time can have sub-second units. We only assume precision for significant digits,
   unless you specify it with the `precision` option.
 
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(5, :milliseconds)
+      iex> ~T[12:30:00] |> add(5, :milliseconds)
       ~T[12:30:00.005]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(500, :milliseconds)
+      iex> ~T[12:30:00] |> add(500, :milliseconds)
       ~T[12:30:00.5]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(500_000, :microseconds, precision: 6)
+      iex> ~T[12:30:00] |> add(500_000, :microseconds, precision: 6)
       ~T[12:30:00.500000]
 
   You can add different units, and mix positive and negative units of time.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(day: 1, year: 2)
+      iex> ~D[2016-06-03] |> add(day: 1, year: 2)
       ~D[2018-06-04]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(hours: 4, minute: -1)
+      iex> ~T[12:30:00] |> add(hours: 4, minute: -1)
       ~T[16:29:00]
-      iex> ~N[2016-06-03 12:30:00] |> GoodTimesProposal.add(months: 2, hours: 15)
+      iex> ~N[2016-06-03 12:30:00] |> add(months: 2, hours: 15)
       ~N[2016-08-04 03:30:00]
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(day: -1, year: 2)
+      iex> ~D[2016-06-03] |> add(day: -1, year: 2)
       ArgumentError
 
   Date and Time will only add units relevant to them.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(1, :second)
+      iex> ~D[2016-06-03] |> add(1, :second)
       ** (ArgumentError) Cannot add second to date
 
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(1, :day)
+      iex> ~T[12:30:00] |> add(1, :day)
       ** (ArgumentError) Cannot add day to time
 
   We can also add to dates, times and datetimes in Erlang tuple format. If so,
   the function will return in the same format.
 
-      iex> {2016, 6, 3} |> GoodTimesProposal.add(1, :day)
+      iex> {2016, 6, 3} |> add(1, :day)
       {2016, 6, 4}
-      iex> {12, 30, 0} |> GoodTimesProposal.add(15, :seconds)
+      iex> {12, 30, 0} |> add(15, :seconds)
       {12, 30, 15}
-      iex> {{2016, 6, 3}, {12, 30, 0}} |> GoodTimesProposal.add(12, :hours)
+      iex> {{2016, 6, 3}, {12, 30, 0}} |> add(12, :hours)
       {{2016, 6, 4}, {0, 30, 0}}
 
-      iex> {2016, 6, 3} |> GoodTimesProposal.add(-1, :day)
+      iex> {2016, 6, 3} |> add(-1, :day)
       {2016, 6, 2}
 
-      iex> {2016, 6, 3} |> GoodTimesProposal.add(day: 1, year: 2)
+      iex> {2016, 6, 3} |> add(day: 1, year: 2)
       {2018, 6, 4}
-      iex> {12, 30, 0} |> GoodTimesProposal.add(hours: 4, minute: -1)
+      iex> {12, 30, 0} |> add(hours: 4, minute: -1)
       {16, 29, 0}
-      iex> {{2016, 6, 3}, {12, 30, 0}} |> GoodTimesProposal.add(months: 2, hours: 15)
+      iex> {{2016, 6, 3}, {12, 30, 0}} |> add(months: 2, hours: 15)
       {{2016, 8, 4}, {3, 30, 0}}
 
   Sub-second units are not supported for Erlang time tuples.
 
-      iex> {12, 30, 0} |> GoodTimesProposal.add(1, :millisecond)
+      iex> {12, 30, 0} |> add(1, :millisecond)
       ** (ArgumentError) Cannot add millisecond to Erlang time tuple
 
   You can retrieve the current NaiveDateTime with `now/0`. This is a breaking
   change from the 1.x behaviour. Get an Erlang datetime tuple with `now/1`.
 
-      iex> GoodTimesProposal.now
+      iex> now
       ~N[2016-06-04 00:27:44]
-      iex> GoodTimesProposal.now(:erl)
+      iex> now(:erl)
       {{2016, 6, 4} {0, 27, 44}}
 
   Functionality in `GoodTimes.Date` have been moved to the main module, and
   behave similar to `now/0` and `now/1`. The functions in `GoodTimes.Date`
   retain their old behaviour (returning Erlang date tuples), but are deprecated.
 
-      iex> GoodTimesProposal.today
+      iex> today
       ~D[2016-06-04]
-      iex> GoodTimesProposal.yesterday
+      iex> yesterday
       ~D[2016-06-03]
-      iex> GoodTimesProposal.tomorrow
+      iex> tomorrow
       ~D[2016-06-05]
-      iex> GoodTimesProposal.today(:erl)
+      iex> today(:erl)
       {2016, 6, 4}
-      iex> GoodTimesProposal.yesterday(:erl)
+      iex> yesterday(:erl)
       {2016, 6, 3}
-      iex> GoodTimesProposal.tomorrow(:erl)
+      iex> tomorrow(:erl)
       {2016, 6, 5}
 
   You can construct a datetime from a date and time, or change the time of a
   datetime with `at/2`. It is possible to mix formats, but output will match
   the first argument.
 
-      iex> GoodTimesProposal.at(~D[2016-06-04], ~T[12:30:00])
+      iex> ~D[2016-06-04] |> at(~T[12:30:00])
       ~N[2016-06-04 12:30:00]
-      iex> GoodTimesProposal.at(~N[2016-06-04 00:00:00], ~T[12:30:00])
+      iex> ~N[2016-06-04 00:00:00] |> at(~T[12:30:00])
       ~N[2016-06-04 12:30:00]
-      iex> GoodTimesProposal.at({2016, 6, 4}, {12, 30, 0})
+      iex> {2016, 6, 4} |> at({12, 30, 0})
       {{2016, 6, 4}, {12, 30, 0}}
-      iex> GoodTimesProposal.at({{2016, 6, 4}, {0, 0, 0}}, {12, 30, 0})
+      iex> {{2016, 6, 4}, {0, 0, 0}} |> at( {12, 30, 0})
       {{2016, 6, 4}, {12, 30, 0}}
-      iex> GoodTimesProposal.at(~N[2016-06-04 00:00:00], {12, 30, 0})
+      iex> ~N[2016-06-04 00:00:00] |> at({12, 30, 0})
       ~N[2016-06-04 12:30:00]
-      iex> GoodTimesProposal.at({2016, 6, 4}, ~T[12:30:00])
+      iex> {2016, 6, 4} |> at(~T[12:30:00])
       {{2016, 6, 4}, {12, 30, 0}}
   """
 
@@ -207,75 +207,75 @@ defmodule GoodTimesProposal do
 
   You can add a unit of time to a Date, Time or NaiveDateTime.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(1, :day)
+      iex> ~D[2016-06-03] |> add(1, :day)
       ~D[2016-06-04]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(15, :seconds)
+      iex> ~T[12:30:00] |> add(15, :seconds)
       ~T[12:30:15]
-      iex> ~N[2016-06-03 12:30:00] |> GoodTimesProposal.add(12, :hours)
+      iex> ~N[2016-06-03 12:30:00] |> add(12, :hours)
       ~N[2016-06-04 00:30:00]
 
   You can add negative units of time, unless `:not_negative` is set.
   Also see `subtract/2` and `subtract/3`.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(-1, :day)
+      iex> ~D[2016-06-03] |> add(-1, :day)
       ~D[2016-06-02]
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(-1, :day, not_negative: true)
+      iex> ~D[2016-06-03] |> add(-1, :day, not_negative: true)
       ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Time can have sub-second units. We only assume precision for significant digits,
   unless you specify it with the `precision` option.
 
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(5, :milliseconds)
+      iex> ~T[12:30:00] |> add(5, :milliseconds)
       ~T[12:30:00.005]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(500, :milliseconds)
+      iex> ~T[12:30:00] |> add(500, :milliseconds)
       ~T[12:30:00.5]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(500_000, :microseconds, precison: 6)
+      iex> ~T[12:30:00] |> add(500_000, :microseconds, precision: 6)
       ~T[12:30:00.500000]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(1, :microseconds, precison: 3)
+      iex> ~T[12:30:00] |> add(1, :microseconds, precision: 3)
       ~T[12:30:00.000]
 
   You can add different units, and mix positive and negative units of time.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(day: 1, year: 2)
+      iex> ~D[2016-06-03] |> add(day: 1, year: 2)
       ~D[2018-06-04]
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(hours: 4, minute: -1)
+      iex> ~T[12:30:00] |> add(hours: 4, minute: -1)
       ~T[16:29:00]
-      iex> ~N[2016-06-03 12:30:00] |> GoodTimesProposal.add(months: 2, hours: 15)
+      iex> ~N[2016-06-03 12:30:00] |> add(months: 2, hours: 15)
       ~N[2016-08-04 03:30:00]
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(day: -1, year: 2, not_negative: true)
+      iex> ~D[2016-06-03] |> add(day: -1, year: 2, not_negative: true)
       ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Date and Time will only add units relevant to them.
 
-      iex> ~D[2016-06-03] |> GoodTimesProposal.add(1, :second)
+      iex> ~D[2016-06-03] |> add(1, :second)
       ** (ArgumentError) Cannot add second to date
 
-      iex> ~T[12:30:00] |> GoodTimesProposal.add(1, :day)
+      iex> ~T[12:30:00] |> add(1, :day)
       ** (ArgumentError) Cannot add day to time
 
   We can also add to dates, times and datetimes in Erlang tuple format. If so,
   the function will return in the same format.
 
-      iex> {2016, 6, 3} |> GoodTimesProposal.add(1, :day)
+      iex> {2016, 6, 3} |> add(1, :day)
       {2016, 6, 4}
-      iex> {12, 30, 0} |> GoodTimesProposal.add(15, :seconds)
+      iex> {12, 30, 0} |> add(15, :seconds)
       {12, 30, 15}
-      iex> {{2016, 6, 3}, {12, 30, 0}} |> GoodTimesProposal.add(12, :hours)
+      iex> {{2016, 6, 3}, {12, 30, 0}} |> add(12, :hours)
       {{2016, 6, 4}, {0, 30, 0}}
 
-      iex> {2016, 6, 3} |> GoodTimesProposal.add(-1, :day)
+      iex> {2016, 6, 3} |> add(-1, :day)
       {2016, 6, 2}
 
-      iex> {2016, 6, 3} |> GoodTimesProposal.add(day: 1, year: 2)
+      iex> {2016, 6, 3} |> add(day: 1, year: 2)
       {2018, 6, 4}
-      iex> {12, 30, 0} |> GoodTimesProposal.add(hours: 4, minute: -1)
+      iex> {12, 30, 0} |> add(hours: 4, minute: -1)
       {16, 29, 0}
-      iex> {{2016, 6, 3}, {12, 30, 0}} |> GoodTimesProposal.add(months: 2, hours: 15)
+      iex> {{2016, 6, 3}, {12, 30, 0}} |> add(months: 2, hours: 15)
       {{2016, 8, 4}, {3, 30, 0}}
 
   Sub-second units are not supported for Erlang time tuples.
 
-      iex> {12, 30, 0} |> GoodTimesProposal.add(1, :millisecond)
+      iex> {12, 30, 0} |> add(1, :millisecond)
       ** (ArgumentError) Cannot add millisecond to Erlang time tuple
   """
   @spec add(moment, integer, unit) :: moment
