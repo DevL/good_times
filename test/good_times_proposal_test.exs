@@ -43,26 +43,26 @@ defmodule GoodTimesProposalTest do
     end
 
     test "milliseconds" do
-      assert add(~T[12:00:00], 1, :millisecond) == ~T[12:00:00.001]
+      assert add(~T[12:00:00.000], 1, :millisecond) == ~T[12:00:00.001]
       assert add(~T[12:00:00.123], 1, :millisecond) == ~T[12:00:00.124]
       assert add(~T[12:00:00.999], 1, :millisecond) == ~T[12:00:01.000]
     end
 
     test "microseconds" do
-      assert add(~T[12:00:00], 1, :microsecond) == ~T[12:00:00.000001]
+      assert add(~T[12:00:00.000000], 1, :microsecond) == ~T[12:00:00.000001]
       assert add(~T[12:00:00.123456], 1, :microsecond) == ~T[12:00:00.123457]
       assert add(~T[12:00:00.999999], 1, :microsecond) == ~T[12:00:01.000000]
     end
 
-    test "does not increase precision" do
-      assert {100_100, 0} = add(~T[12:00:00], 100_100, :microseconds).microsecond
+    test "don't increase precision" do
+      assert {111_111, 0} = add(~T[12:00:00], 111_111, :microseconds).microsecond
     end
 
-    test "count significant digits for precision" do
-      assert {100_100, 4} = add(~T[12:00:00.000000], 100_100, :microseconds).microsecond
+    test "use precision of delta (significant digits), when less precise than original" do
+      assert {123_400, 4} = add(~T[12:00:00.000000], 123_400, :microseconds).microsecond
     end
 
-    test "imprecise value can lose precision on original time" do
+    test "imprecise delta can lose precision on original time" do
       assert {100_001, 1} = add(~T[12:00:00.000001], 100_000, :microseconds).microsecond
     end
 
@@ -180,22 +180,26 @@ defmodule GoodTimesProposalTest do
     end
 
     test "millisecond" do
-      assert add(~N[2016-06-06 23:59:59], 1, :millisecond) == ~N[2016-06-06 23:59:59.001]
+      assert add(~N[2016-06-06 23:59:59.000], 1, :millisecond) == ~N[2016-06-06 23:59:59.001]
     end
 
     test "microsecond" do
-      assert add(~N[2016-06-06 23:59:59], 1, :microsecond) == ~N[2016-06-06 23:59:59.000001]
+      assert add(~N[2016-06-06 23:59:59.000000], 1, :microsecond) == ~N[2016-06-06 23:59:59.000001]
     end
 
-    test "count significant digits for precision" do
-      assert {100_100, 4} = add(~N[2016-06-06 12:00:00], 100_100, :microseconds).microsecond
+    test "don't increase microsecond precision" do
+      assert {111_100, 0} = add(~T[12:00:00], 111_100, :microseconds).microsecond
     end
 
-    test "imprecise value can lose precision on original time" do
+    test "use microsecond precision of delta (significant digits), when less precise than original" do
+      assert {123_400, 4} = add(~N[2016-06-06 12:00:00.000000], 123_400, :microseconds).microsecond
+    end
+
+    test "imprecise delta can lose microsecond precision on original" do
       assert {100_001, 1} = add(~N[2016-06-06 12:00:00.000001], 100_000, :microseconds).microsecond
     end
 
-    test "microseconds with specified precision" do
+    test "microsecond precision can be specified" do
       assert {100_000, 6} = add(~N[2016-06-06 12:00:00], 100_000, :microseconds, precision: 6).microsecond
       assert {1, 0} = add(~N[2016-06-06 12:00:00], 1, :microseconds, precision: 0).microsecond
     end

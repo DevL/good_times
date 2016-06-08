@@ -340,17 +340,21 @@ defmodule GoodTimesProposal do
     add_time(time, n * 60*60, :seconds, opts)
 
   defp add_microseconds(time, n, opts) do
-    {us, _precision} = time.microsecond
+    {us, old_precision} = time.microsecond
     total_us = us + n
     seconds = div(total_us, 1_000_000)
     new_us = rem(total_us, 1_000_000)
-    new_precision = opts[:precision] || 6 - trailing_zeroes(n)
+    new_precision = opts[:precision] || Enum.min([old_precision, micro_precision(n)])
 
     {seconds, {new_us, new_precision}}
   end
 
-  defp trailing_zeroes(n) do
-    Enum.find(6..0, fn exp -> trunc(n / :math.pow(10, exp)) * :math.pow(10, exp) == n end)
+  defp micro_precision(n) when n in 0..999_999 do
+    n
+    |> to_string
+    |> String.pad_leading(6, "0")
+    |> String.trim_trailing("0")
+    |> String.length
   end
 
   defp add_date(%Date{} = date, n, unit, opts) do
