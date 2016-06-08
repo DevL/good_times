@@ -79,8 +79,8 @@ defmodule GoodTimesProposal do
       iex> ~D[2016-06-03] |> add(-1, :day, not_negative: true)
       ** (ArgumentError) Negative unit of time when :not_negative specified
 
-  Time can have sub-second units. We only assume precision for significant digits,
-  unless you specify it with the `precision` option.
+  Time and NaiveDateTime can have sub-second units. We only assume precision for
+  significant digits, unless you specify it with the `precision` option.
 
       iex> ~T[12:30:00] |> add(5, :milliseconds)
       ~T[12:30:00.005]
@@ -97,8 +97,8 @@ defmodule GoodTimesProposal do
       ~T[16:29:00]
       iex> ~N[2016-06-03 12:30:00] |> add(months: 2, hours: 15)
       ~N[2016-08-04 03:30:00]
-      iex> ~D[2016-06-03] |> add(day: -1, year: 2)
-      ArgumentError
+      iex> ~D[2016-06-03] |> add(day: -1, year: 2, not_negative: true)
+      ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Date and Time will only add units relevant to them.
 
@@ -134,7 +134,7 @@ defmodule GoodTimesProposal do
       ** (ArgumentError) Cannot add millisecond to Erlang time tuple
 
   You can retrieve the current NaiveDateTime with `now/0`. This is a breaking
-  change from the 1.x behaviour. Get an Erlang datetime tuple with `now/1`.
+  change from the 1.x behaviour. Get an Erlang datetime tuple with `now(:erl)`.
 
       iex> now
       ~N[2016-06-04 00:27:44]
@@ -222,8 +222,9 @@ defmodule GoodTimesProposal do
       iex> ~D[2016-06-03] |> add(-1, :day, not_negative: true)
       ** (ArgumentError) Negative unit of time when :not_negative specified
 
-  Time can have sub-second units. We only assume precision for significant digits,
-  unless you specify it with the `precision` option.
+  Time and NaiveDateTime accept sub-second units. You can specify precision with
+  the `precision` option. Default is to use the lower one of the original
+  precision or the significant digits of the delta.
 
       iex> ~T[12:30:00] |> add(5, :milliseconds)
       ~T[12:30:00.005]
@@ -234,7 +235,7 @@ defmodule GoodTimesProposal do
       iex> ~T[12:30:00] |> add(1, :microseconds, precision: 3)
       ~T[12:30:00.000]
 
-  You can add different units, and mix positive and negative units of time.
+  You can add different units at once.
 
       iex> ~D[2016-06-03] |> add(day: 1, year: 2)
       ~D[2018-06-04]
@@ -253,8 +254,8 @@ defmodule GoodTimesProposal do
       iex> ~T[12:30:00] |> add(1, :day)
       ** (ArgumentError) Cannot add day to time
 
-  We can also add to dates, times and datetimes in Erlang tuple format. If so,
-  the function will return in the same format.
+  GoodTimes also accepts dates, times and datetimes in Erlang tuple format.
+  The return value will match the input.
 
       iex> {2016, 6, 3} |> add(1, :day)
       {2016, 6, 4}
