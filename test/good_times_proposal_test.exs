@@ -54,8 +54,12 @@ defmodule GoodTimesProposalTest do
       assert add(~T[12:00:00.999999], 1, :microsecond) == ~T[12:00:01.000000]
     end
 
+    test "does not increase precision" do
+      assert {100_100, 0} = add(~T[12:00:00], 100_100, :microseconds).microsecond
+    end
+
     test "count significant digits for precision" do
-      assert {100_100, 4} = add(~T[12:00:00], 100_100, :microseconds).microsecond
+      assert {100_100, 4} = add(~T[12:00:00.000000], 100_100, :microseconds).microsecond
     end
 
     test "imprecise value can lose precision on original time" do
