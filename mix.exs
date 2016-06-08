@@ -38,7 +38,7 @@ defmodule GoodTimes.Mixfile do
       {:earmark, "~> 0.2", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
       {:mix_test_watch, "~> 0.2", only: :dev},
-      {:inch_ex, ">= 0.4.0", only: :docs}
+      {:inch_ex, ">= 0.5.0", only: :docs}
     ]
   end
 end

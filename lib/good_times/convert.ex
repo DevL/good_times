@@ -71,11 +71,11 @@ defmodule GoodTimes.Convert do
   ## Examples
 
       iex> {{2015, 2, 27}, {18, 30, 45}} |> to_elixir_time
-      %Time{hour: 18, minute: 30, second: 45}
+      %Time{hour: 18, minute: 30, second: 45, microsecond: 0}
   """
   @spec to_elixir_time(GoodTimes.datetime) :: Time.t
   def to_elixir_time({_, {hour, minute, second}}) do
-    %Time{hour: hour, minute: minute, second: second}
+    %Time{hour: hour, minute: minute, second: second, microsecond: 0}
   end
 
   @doc """
