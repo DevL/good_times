@@ -18,11 +18,6 @@ defmodule GoodTimesProposalTest do
       assert add({12, 0, 0}, -1, :second) == {11, 59, 59}
     end
 
-    test "negative seconds disallowed by option" do
-      assert_raise ArgumentError, fn -> add(~T[12:00:00], -1, :second, not_negative: true) end
-      assert_raise ArgumentError, fn -> add({12, 0, 0}, -1, :second, not_negative: true) end
-    end
-
     test "keeps sub-second part" do
       assert add(~T[12:00:00.0001], 1, :second) == ~T[12:00:01.0001]
     end
@@ -100,11 +95,6 @@ defmodule GoodTimesProposalTest do
     test "negative days" do
       assert add(~D[2016-06-05], -5, :days) == ~D[2016-05-31]
       assert add({2016, 6, 5}, -5, :days) == {2016, 5, 31}
-    end
-
-    test "negative days disallowed by option" do
-      assert_raise(ArgumentError, fn -> add(~D[2016-06-05], -5, :days, not_negative: true) end)
-      assert_raise(ArgumentError, fn -> add({2016, 6, 5}, -5, :days, not_negative: true) end)
     end
 
     test "weeks" do

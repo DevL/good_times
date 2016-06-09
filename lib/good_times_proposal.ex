@@ -42,9 +42,6 @@ defmodule GoodTimesProposal do
 
   - `:precision`, integer 0..6. Specify the precision when adding subsecond units.
     If not set, precision is set for significant digits.
-  - `:not_negative`, boolean. Whether to allow negative units of time. Raises
-    ArgumentError if set and a unit of time is negative. Defaults is to allow
-    negative values.
 
 
   ## Units
@@ -71,13 +68,10 @@ defmodule GoodTimesProposal do
       iex> ~N[2016-06-03 12:30:00] |> add(12, :hours)
       ~N[2016-06-04 00:30:00]
 
-  You can add negative units of time, unless `:not_negative` is set. Also see
-  `subtract/2` and `subtract/3`.
+  You can add negative units of time. Also see `subtract/2` and `subtract/3`.
 
       iex> ~D[2016-06-03] |> add(-1, :day)
       ~D[2016-06-02]
-      iex> ~D[2016-06-03] |> add(-1, :day, not_negative: true)
-      ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Time and NaiveDateTime can have sub-second units. We only assume precision for
   significant digits, unless you specify it with the `precision` option.
@@ -97,8 +91,6 @@ defmodule GoodTimesProposal do
       ~T[16:29:00]
       iex> ~N[2016-06-03 12:30:00] |> add(months: 2, hours: 15)
       ~N[2016-08-04 03:30:00]
-      iex> ~D[2016-06-03] |> add(day: -1, year: 2, not_negative: true)
-      ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Date and Time will only add units relevant to them.
 
@@ -214,13 +206,10 @@ defmodule GoodTimesProposal do
       iex> ~N[2016-06-03 12:30:00] |> add(12, :hours)
       ~N[2016-06-04 00:30:00]
 
-  You can add negative units of time, unless `:not_negative` is set.
-  Also see `subtract/2` and `subtract/3`.
+  You can add negative units of time. Also see `subtract/2` and `subtract/3`.
 
       iex> ~D[2016-06-03] |> add(-1, :day)
       ~D[2016-06-02]
-      iex> ~D[2016-06-03] |> add(-1, :day, not_negative: true)
-      ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Time and NaiveDateTime accept sub-second units. You can specify precision with
   the `precision` option. Default is to use the lower one of the original
@@ -243,8 +232,6 @@ defmodule GoodTimesProposal do
       ~T[16:29:00]
       iex> ~N[2016-06-03 12:30:00] |> add(months: 2, hours: 15)
       ~N[2016-08-04 03:30:00]
-      iex> ~D[2016-06-03] |> add(day: -1, year: 2, not_negative: true)
-      ** (ArgumentError) Negative unit of time when :not_negative specified
 
   Date and Time will only add units relevant to them.
 
@@ -283,37 +270,33 @@ defmodule GoodTimesProposal do
   @spec add(moment, integer, unit, Keyword.t) :: moment
   def add(moment, n, unit, opts \\ [])
   def add(moment, n, unit, opts) do
-    if opts[:not_negative] && n < 0 do
-      raise ArgumentError, "Negative unit of time when :not_negative specified"
-    else
-      case {moment, unit} do
-        {%Time{}, _} when unit in @all_time_units ->
-          add_time(moment, n, unit, opts)
-        {{h, m, s}, unit} when unit in @time_units and h in 0..23 and m in 0..59 and s in 0..60 ->
-          add_time(moment, n, unit, opts)
-        {{_,_,_}, unit} when unit in @subsecond_units ->
-          raise ArgumentError, "Cannot add #{unit} to Erlang time tuple"
-        {%Time{}, unit} ->
-          raise ArgumentError, "Cannot add #{unit} to time"
-        {{h, m, s}, unit} when h in 0..23 and m in 0..59 and s in 0..60 ->
-          raise ArgumentError, "Cannot add #{unit} to time"
+    case {moment, unit} do
+      {%Time{}, _} when unit in @all_time_units ->
+        add_time(moment, n, unit, opts)
+      {{h, m, s}, unit} when unit in @time_units and h in 0..23 and m in 0..59 and s in 0..60 ->
+        add_time(moment, n, unit, opts)
+      {{_,_,_}, unit} when unit in @subsecond_units ->
+        raise ArgumentError, "Cannot add #{unit} to Erlang time tuple"
+      {%Time{}, unit} ->
+        raise ArgumentError, "Cannot add #{unit} to time"
+      {{h, m, s}, unit} when h in 0..23 and m in 0..59 and s in 0..60 ->
+        raise ArgumentError, "Cannot add #{unit} to time"
 
-        {%Date{}, unit} when unit in @date_units ->
-          add_date(moment, n, unit, opts)
-        {{y, m, d}, unit} when unit in @date_units and y > 0 and m in 1..12 and d in 1..31 ->
-          add_date(moment, n, unit, opts)
-        {%Date{}, unit} ->
-          raise ArgumentError, "Cannot add #{unit} to date"
-        {{y, m, d}, unit} when y > 0 and m in 1..12 and d in 1..31 ->
-          raise ArgumentError, "Cannot add #{unit} to date"
+      {%Date{}, unit} when unit in @date_units ->
+        add_date(moment, n, unit, opts)
+      {{y, m, d}, unit} when unit in @date_units and y > 0 and m in 1..12 and d in 1..31 ->
+        add_date(moment, n, unit, opts)
+      {%Date{}, unit} ->
+        raise ArgumentError, "Cannot add #{unit} to date"
+      {{y, m, d}, unit} when y > 0 and m in 1..12 and d in 1..31 ->
+        raise ArgumentError, "Cannot add #{unit} to date"
 
-        {%NaiveDateTime{}, _} ->
-          add_datetime(moment, n, unit, opts)
-        {{{_,_,_}, {_,_,_}}, unit} when unit in @subsecond_units ->
-          raise ArgumentError, "Cannot add #{unit} to Erlang datetime tuple"
-        {{{_,_,_}, {_,_,_}}, _} ->
-          add_datetime(moment, n, unit, opts)
-      end
+      {%NaiveDateTime{}, _} ->
+        add_datetime(moment, n, unit, opts)
+      {{{_,_,_}, {_,_,_}}, unit} when unit in @subsecond_units ->
+        raise ArgumentError, "Cannot add #{unit} to Erlang datetime tuple"
+      {{{_,_,_}, {_,_,_}}, _} ->
+        add_datetime(moment, n, unit, opts)
     end
   end
 
