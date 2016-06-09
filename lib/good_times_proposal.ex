@@ -300,6 +300,8 @@ defmodule GoodTimesProposal do
     end
   end
 
+  def subtract(moment, n, unit, opts \\ []), do: add(moment, -n, unit, opts)
+
   defp add_time(%Time{} = time, n, unit, opts) when unit in [:microsecond, :microseconds] do
     {seconds, microseconds} = add_microseconds(time, n, opts)
     %{add_time(time, seconds, :seconds, opts) | microsecond: microseconds}
@@ -406,26 +408,12 @@ defmodule GoodTimesProposal do
   end
   defp add_datetime(dt, n, unit, opts) when unit in [:year, :years], do:
     add_datetime(dt, n*12, :months, opts)
-  # def add(%Date{} = date, n, unit, opts) when unit in [:month, :months], do: ...
-  # def add(%Date{} = date, n, unit, opts) when unit in [:year, :years], do: ...
-
-  @spec add(moment, Keyword.t) :: moment
-  def add(_moment, _units_and_options) do
-  end
-
-  @spec subtract(moment, integer, unit) :: moment
-  @spec subtract(moment, integer, unit, Keyword.t) :: moment
-  def subtract(_moment, _n, _unit, _opts \\ []) do
-  end
-
-  @spec subtract(moment, Keyword.t) :: moment
-  def subtract(_moment, _units_and_options) do
-  end
 
   @spec now() :: NaiveDateTime.t
   @spec now(format) :: datetime
-  def now(_format \\ :elixir) do
-  end
+  def now(_format \\ :elixir)
+  def now(:elixir), do: NaiveDateTime.from_erl!(now(:erl))
+  def now(:erl), do: :calendar.universal_time
 
   # GoodTimes.Date is deprecated, functions are moved to main module
   @spec today :: Date.t
