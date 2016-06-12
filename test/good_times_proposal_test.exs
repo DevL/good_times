@@ -199,4 +199,9 @@ defmodule GoodTimesProposalTest do
       assert_raise ArgumentError, fn -> add({{2016, 6, 6}, {12, 0, 0}}, 1, :microsecond) end
     end
   end
+
+  describe "now" do
+    test "defaults to NaiveDateTime", do: assert %NaiveDateTime{} = now
+    test "can return Erlang datetime tuple", do: assert {{_y,_mo,_d}, {_h,_m,_s}} = now(:erl)
+  end
 end

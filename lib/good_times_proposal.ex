@@ -409,10 +409,20 @@ defmodule GoodTimesProposal do
   defp add_datetime(dt, n, unit, opts) when unit in [:year, :years], do:
     add_datetime(dt, n*12, :months, opts)
 
+  @doc """
+  Returns the current UTC time as NaiveDateTime or in the given format.
+
+  ## Examples
+
+      iex> now
+      ~N[2016-06-06 18:30:45]
+      iex> now(:erl)
+      {{2016, 6, 6}, {18, 30, 45}}
+  """
   @spec now() :: NaiveDateTime.t
   @spec now(format) :: datetime
   def now(_format \\ :elixir)
-  def now(:elixir), do: NaiveDateTime.from_erl!(now(:erl))
+  def now(:elixir), do: now(:erl) |> NaiveDateTime.from_erl!
   def now(:erl), do: :calendar.universal_time
 
   @spec at(date, time) :: datetime
