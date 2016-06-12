@@ -425,8 +425,45 @@ defmodule GoodTimesProposal do
   def now(:elixir), do: now(:erl) |> NaiveDateTime.from_erl!
   def now(:erl), do: :calendar.universal_time
 
-  @spec at(date, time) :: datetime
-  @spec at(datetime, time) :: datetime
-  def at(_moment, _time) do
+
+  @doc """
+  Returns a datetime, at the given time. First argument can be date or datetime.
+
+  Format of returned datetime will match that of the first argument (NaiveDateTime
+  if given a Date struct, Erlang datetime tuple if given date tuple). Second
+  argument can be in either format.
+  """
+  @spec at_time(date | datetime, time) :: datetime
+  def at_time(%Date{} = d, %Time{} = t) do
+    {:ok, dt} = NaiveDateTime.new(d, t)
+    dt
+  end
+  def at_time(%Date{} = d, {h, m, s}) when h in 0..23 and m in 0..59 and s in 0..60 do
+    at_time(d, Time.from_erl!({h, m, s}, {0, 0}))
+  end
+  def at_time(%NaiveDateTime{} = dt, %Time{} = t) do
+    {:ok, new_dt} = dt
+      |> NaiveDateTime.to_date
+      |> NaiveDateTime.new(t)
+    new_dt
+  end
+  def at_time(%NaiveDateTime{} = dt, {h, m, s}) when h in 0..23 and m in 0..59 and s in 0..60 do
+    at_time(dt, Time.from_erl!({h, m, s}, {0, 0}))
+  end
+  def at_time({y, mo, d}, %Time{} = t) when y >= 0 and mo in 1..12 and d in 1..31 do
+    {{y, mo, d}, Time.to_erl(t)}
+  end
+  def at_time({y, mo, d}, {h, m, s})
+      when y >= 0 and mo in 1..12 and d in 1..31
+      and h in 0..23 and m in 0..59 and s in 0..60 do
+    {{y, mo, d}, {h, m, s}}
+  end
+  def at_time({{y,mo,d}, {_,_,_}}, %Time{} = t) when y >= 0 and mo in 1..12 and d in 1..31 do
+    {{y, mo, d}, Time.to_erl(t)}
+  end
+  def at_time({{y, mo, d}, {_,_,_}}, {h, m, s})
+      when y >= 0 and mo in 1..12 and d in 1..31
+      and h in 0..23 and m in 0..59 and s in 0..60 do
+    {{y, mo, d}, {h, m, s}}
   end
 end

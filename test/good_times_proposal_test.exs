@@ -204,4 +204,38 @@ defmodule GoodTimesProposalTest do
     test "defaults to NaiveDateTime", do: assert %NaiveDateTime{} = now
     test "can return Erlang datetime tuple", do: assert {{_y,_mo,_d}, {_h,_m,_s}} = now(:erl)
   end
+
+  describe "at_time" do
+    test "returns NaiveDateTime for Date and Time" do
+      assert at_time(~D[2016-06-06], ~T[12:30:00]) == ~N[2016-06-06 12:30:00]
+    end
+
+    test "returns NaiveDateTime for Date and time tuple" do
+      assert at_time(~D[2016-06-06], {12,30,0}) == ~N[2016-06-06 12:30:00]
+    end
+
+    test "returns NaiveDateTime for NaiveDateTime and Time" do
+      assert at_time(~N[2016-06-06 00:00:00], ~T[12:30:00]) == ~N[2016-06-06 12:30:00]
+    end
+
+    test "returns NaiveDateTime for NaiveDateTime and time tuple" do
+      assert at_time(~N[2016-06-06 00:00:00], {12,30,0}) == ~N[2016-06-06 12:30:00]
+    end
+
+    test "returns Erlang datetime for Erlang date and Time" do
+      assert at_time({2016, 6, 6}, ~T[12:30:00]) == {{2016, 6, 6}, {12, 30, 0}}
+    end
+
+    test "returns Erlang datetime for Erlang date and time tuple" do
+      assert at_time({2016, 6, 6}, {12,30,0}) == {{2016, 6, 6}, {12, 30, 0}}
+    end
+
+    test "returns Erlang datetime for Erlang datetime and Time" do
+      assert at_time({{2016, 6, 6}, {0, 0, 0}}, ~T[12:30:00]) == {{2016, 6, 6}, {12, 30, 0}}
+    end
+
+    test "returns Erlang datetime for Erlang datetime and time tuple" do
+      assert at_time({{2016, 6, 6}, {0, 0, 0}}, {12,30,0}) == {{2016, 6, 6}, {12, 30, 0}}
+    end
+  end
 end
