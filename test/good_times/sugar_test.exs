@@ -1,7 +1,7 @@
 defmodule GoodTimes.SugarTest do
   use ExUnit.Case
   import GoodTimes.Sugar
-  import GoodTimesProposal
+  import GoodTimesProposal, only: [add: 3, subtract: 3, now: 0, now: 1]
 
   @dt ~N[2016-06-09 12:00:00]
   @dt_erl {{2016, 6, 9}, {12, 0, 0}}
