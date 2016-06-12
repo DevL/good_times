@@ -415,22 +415,6 @@ defmodule GoodTimesProposal do
   def now(:elixir), do: NaiveDateTime.from_erl!(now(:erl))
   def now(:erl), do: :calendar.universal_time
 
-  # GoodTimes.Date is deprecated, functions are moved to main module
-  @spec today :: Date.t
-  @spec today(format) :: date
-  def today(_format \\ :elixir) do
-  end
-
-  @spec tomorrow :: Date.t
-  @spec tomorrow(format) :: date
-  def tomorrow(_format \\ :elixir) do
-  end
-
-  @spec yesterday :: Date.t
-  @spec yesterday(format) :: date
-  def yesterday(_format \\ :elixir) do
-  end
-
   @spec at(date, time) :: datetime
   @spec at(datetime, time) :: datetime
   def at(_moment, _time) do
