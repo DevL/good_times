@@ -6,6 +6,7 @@ defmodule GoodTimes.Sugar do
   import GoodTimesProposal, only: [now: 1, add: 3, subtract: 3]
 
   @type datetime :: GoodTimesProposal.moment
+  @type date :: GoodTimesProposal.date
 
 
   ## SECONDS
@@ -391,4 +392,60 @@ defmodule GoodTimes.Sugar do
   @spec a_year_ago :: datetime
   @spec a_year_ago(:elixir | :erl) :: datetime
   def a_year_ago(format \\ :elixir), do: years_ago(1, format)
+
+
+  ## DATES
+
+  @doc """
+  One day before now, converted to date. Equivalent to
+  `now |> subtract(1, :day) |> NaiveDateTime.to_date` or
+  `{date, _} = now(:erl) |> subtract(1, :day)`
+  """
+  @spec yesterday :: Date.t
+  @spec yesterday(:elixir | :erl) :: date
+  def yesterday, do: yesterday(:elixir)
+  def yesterday(:elixir) do
+    now(:elixir)
+    |> subtract(1, :day)
+    |> NaiveDateTime.to_date
+  end
+  def yesterday(:erl) do
+    {date, _} = now(:erl)
+      |> subtract(1, :day)
+    date
+  end
+
+  @doc """
+  Now, converted to date. Equivalent to `now |> NaiveDateTime.to_date` or `{date, _} = now(:erl)`
+  """
+  @spec today :: Date.t
+  @spec today(:elixir | :erl) :: date
+  def today, do: today(:elixir)
+  def today(:elixir) do
+    now(:elixir)
+    |> NaiveDateTime.to_date
+  end
+  def today(:erl) do
+    {date, _} = now(:erl)
+    date
+  end
+
+  @doc """
+  One day after now, converted to date. Equivalent to
+  `now |> add(1, :day) |> NaiveDateTime.to_date` or
+  `{date, _} = now(:erl) |> add(1, :day)`
+  """
+  @spec tomorrow :: Date.t
+  @spec tomorrow(:elixir | :erl) :: date
+  def tomorrow, do: tomorrow(:elixir)
+  def tomorrow(:elixir) do
+    now(:elixir)
+    |> add(1, :day)
+    |> NaiveDateTime.to_date
+  end
+  def tomorrow(:erl) do
+    {date, _} = now(:erl)
+      |> add(1, :day)
+    date
+  end
 end

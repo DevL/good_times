@@ -305,4 +305,30 @@ defmodule GoodTimes.SugarTest do
       assert a_year_ago(:erl) == subtract(now(:erl), 1, :year)
     end
   end
+
+  describe "dates" do
+    test "yesterday" do
+      assert yesterday == now |> subtract(1, :day) |> NaiveDateTime.to_date
+    end
+    test "yesterday(:erl)" do
+      {expected_date, _} = now(:erl) |> subtract(1, :day)
+      assert yesterday(:erl) == expected_date
+    end
+
+    test "today" do
+      assert today == now |> NaiveDateTime.to_date
+    end
+    test "today(:erl)" do
+      {expected_date, _} = now(:erl)
+      assert today(:erl) == expected_date
+    end
+
+    test "tomorrow" do
+      assert tomorrow == now |> add(1, :day) |> NaiveDateTime.to_date
+    end
+    test "tomorrow(:erl)" do
+      {expected_date, _} = now(:erl) |> add(1, :day)
+      assert tomorrow(:erl) == expected_date
+    end
+  end
 end
