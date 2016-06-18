@@ -9,6 +9,8 @@ defmodule GoodTimes.Mixfile do
       source_url: "https://github.com/DevL/good_times",
       elixir: "~> 1.0",
       deps: deps,
+      preferred_cli_env: [coveralls: :test, "coveralls.html": :test, "test.watch": :test],
+      test_coverage: [tool: ExCoveralls],
       description: description,
       package: package
     ]
@@ -36,8 +38,10 @@ defmodule GoodTimes.Mixfile do
   defp deps do
     [
       {:earmark, "~> 0.2", only: :dev},
-      {:ex_doc, "~> 0.11", only: :dev},
-      {:inch_ex, ">= 0.4.0", only: :docs}
+      {:ex_doc, "~> 0.12", only: :dev},
+      {:inch_ex, "~> 0.5", only: :docs},
+      {:excoveralls, "~> 0.4", only: :test},
+      {:mix_test_watch, "~> 0.2.6", only: :test}
     ]
   end
 end
