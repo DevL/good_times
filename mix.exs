@@ -4,15 +4,15 @@ defmodule GoodTimes.Mixfile do
   def project do
     [
       app: :good_times,
-      version: "1.1.1",
+      version: "1.1.2",
       name: "GoodTimes",
       source_url: "https://github.com/DevL/good_times",
       elixir: "~> 1.0",
-      deps: deps,
+      deps: deps(),
       preferred_cli_env: [coveralls: :test, "coveralls.html": :test, "test.watch": :test],
       test_coverage: [tool: ExCoveralls],
-      description: description,
-      package: package
+      description: description(),
+      package: package()
     ]
   end
 

@@ -5,14 +5,14 @@ defmodule GoodTimes.DateTest do
   import GoodTimes.Date
 
   test "today" do
-    assert today == to_date(now)
+    assert today() == to_date(now())
   end
 
   test "tomorrow" do
-    assert tomorrow == to_date(a_day_from_now)
+    assert tomorrow() == to_date(a_day_from_now())
   end
 
   test "yesterday" do
-    assert yesterday == to_date(a_day_ago)
+    assert yesterday() == to_date(a_day_ago())
   end
 end

@@ -26,7 +26,7 @@ defmodule GoodTimes.Date do
       {2015, 2, 27}
   """
   @spec today :: GoodTimes.date
-  def today, do: GoodTimes.Convert.to_date(GoodTimes.now)
+  def today, do: GoodTimes.Convert.to_date(GoodTimes.now())
 
   @doc """
   Returns tomorrow's date.
@@ -37,7 +37,7 @@ defmodule GoodTimes.Date do
       {2015, 2, 28}
   """
   @spec tomorrow :: GoodTimes.date
-  def tomorrow, do: GoodTimes.Convert.to_date(GoodTimes.a_day_from_now)
+  def tomorrow, do: GoodTimes.Convert.to_date(GoodTimes.a_day_from_now())
 
   @doc """
   Returns yesterday's date.
@@ -48,5 +48,5 @@ defmodule GoodTimes.Date do
       {2015, 2, 26}
   """
   @spec yesterday :: GoodTimes.date
-  def yesterday, do: GoodTimes.Convert.to_date(GoodTimes.a_day_ago)
+  def yesterday, do: GoodTimes.Convert.to_date(GoodTimes.a_day_ago())
 end

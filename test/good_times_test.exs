@@ -15,7 +15,7 @@ defmodule GoodTimesTest do
   ]
 
   test "now" do
-    assert now == :calendar.universal_time
+    assert now() == :calendar.universal_time()
   end
 
   @a_date {2015, 2, 27}
@@ -30,83 +30,83 @@ defmodule GoodTimesTest do
   end
 
   test "seconds_from_now" do
-    assert seconds_from_now(10) == seconds_after(10, now)
+    assert seconds_from_now(10) == seconds_after(10, now())
   end
 
   test "seconds_ago" do
-    assert seconds_ago(15) == seconds_before(15, now)
+    assert seconds_ago(15) == seconds_before(15, now())
   end
 
   test "a_second_from_now" do
-    assert a_second_from_now == a_second_after now
+    assert a_second_from_now() == a_second_after(now())
   end
 
   test "a_second_ago" do
-    assert a_second_ago == a_second_before now
+    assert a_second_ago() == a_second_before(now())
   end
 
   test "minutes_from_now" do
-    assert minutes_from_now(5) == minutes_after(5, now)
+    assert minutes_from_now(5) == minutes_after(5, now())
   end
 
   test "minutes_ago" do
-    assert minutes_ago(20) == minutes_before(20, now)
+    assert minutes_ago(20) == minutes_before(20, now())
   end
 
   test "a_minute_from_now" do
-    assert a_minute_from_now == a_minute_after now
+    assert a_minute_from_now() == a_minute_after(now())
   end
 
   test "a_minute_ago" do
-    assert a_minute_ago == a_minute_before now
+    assert a_minute_ago() == a_minute_before(now())
   end
 
   test "hours_from_now" do
-    assert hours_from_now(2) == hours_after(2, now)
+    assert hours_from_now(2) == hours_after(2, now())
   end
 
   test "hours_ago" do
-    assert hours_ago(4) == hours_before(4, now)
+    assert hours_ago(4) == hours_before(4, now())
   end
 
   test "an_hour_from_now" do
-    assert an_hour_from_now == an_hour_after now
+    assert an_hour_from_now() == an_hour_after(now())
   end
 
   test "an_hour_ago" do
-    assert an_hour_ago == an_hour_before now
+    assert an_hour_ago() == an_hour_before(now())
   end
 
   test "days_from_now" do
-    assert days_from_now(3) == days_after(3, now)
+    assert days_from_now(3) == days_after(3, now())
   end
 
   test "days_ago" do
-    assert days_ago(7) == days_before(7, now)
+    assert days_ago(7) == days_before(7, now())
   end
 
   test "a_day_from_now" do
-    assert a_day_from_now == a_day_after now
+    assert a_day_from_now() == a_day_after(now())
   end
 
   test "a_day_ago" do
-    assert a_day_ago == a_day_before now
+    assert a_day_ago() == a_day_before(now())
   end
 
   test "weeks_from_now" do
-    assert weeks_from_now(4) == weeks_after(4, now)
+    assert weeks_from_now(4) == weeks_after(4, now())
   end
 
   test "weeks_ago" do
-    assert weeks_ago(4) == weeks_before(4, now)
+    assert weeks_ago(4) == weeks_before(4, now())
   end
 
   test "a_week_from_now" do
-    assert a_week_from_now == a_week_after now
+    assert a_week_from_now() == a_week_after(now())
   end
 
   test "a_week_ago" do
-    assert a_week_ago == a_week_before now
+    assert a_week_ago() == a_week_before(now())
   end
 
   @last_jan_2015 {{2015, 1, 31}, {12, 0, 0}}
@@ -131,19 +131,19 @@ defmodule GoodTimesTest do
   end
 
   test "months_from_now" do
-    assert months_from_now(18) == months_after(18, now)
+    assert months_from_now(18) == months_after(18, now())
   end
 
   test "months_ago" do
-    assert months_ago(10) == months_before(10, now)
+    assert months_ago(10) == months_before(10, now())
   end
 
   test "a_month_from_now" do
-    assert a_month_from_now == a_month_after now
+    assert a_month_from_now() == a_month_after(now())
   end
 
   test "a_month_ago" do
-    assert a_month_ago == a_month_before now
+    assert a_month_ago() == a_month_before(now())
   end
 
   test "years_after a leap day" do
@@ -151,18 +151,18 @@ defmodule GoodTimesTest do
   end
 
   test "years_from_now" do
-    assert years_from_now(5) == years_after(5, now)
+    assert years_from_now(5) == years_after(5, now())
   end
 
   test "years_ago" do
-    assert years_ago(20) == years_before(20, now)
+    assert years_ago(20) == years_before(20, now())
   end
 
   test "a_year_from_now" do
-    assert a_year_from_now == a_year_after now
+    assert a_year_from_now() == a_year_after(now())
   end
 
   test "a_year_ago" do
-    assert a_year_ago == a_year_before now
+    assert a_year_ago() == a_year_before(now())
   end
 end
