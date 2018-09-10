@@ -69,10 +69,10 @@ defmodule GoodTimes do
   @seconds_per_week 7 * @seconds_per_day
   @months_per_year 12
 
-  @type year  :: non_neg_integer
+  @type year :: non_neg_integer
   @type month :: 1..12
-  @type day   :: 1..31
-  @type hour   :: 0..23
+  @type day :: 1..31
+  @type hour :: 0..23
   @type minute :: 0..59
   @type second :: 0..59
   @type date :: {year, month, day}
@@ -88,7 +88,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 30, 45}}
   """
   @spec now :: datetime
-  def now, do: :calendar.universal_time
+  def now, do: :calendar.universal_time()
 
   @doc """
   Merges the date from the given date or datetime with the given time.
@@ -117,9 +117,9 @@ defmodule GoodTimes do
   @spec seconds_after(integer, datetime) :: datetime
   def seconds_after(seconds, datetime) do
     datetime
-    |> :calendar.datetime_to_gregorian_seconds
+    |> :calendar.datetime_to_gregorian_seconds()
     |> Kernel.+(seconds)
-    |> :calendar.gregorian_seconds_to_datetime
+    |> :calendar.gregorian_seconds_to_datetime()
   end
 
   @doc """
@@ -164,7 +164,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 31, 0}}
   """
   @spec seconds_from_now(integer) :: datetime
-  def seconds_from_now(seconds), do: seconds_after(seconds, now)
+  def seconds_from_now(seconds), do: seconds_after(seconds, now())
 
   @doc """
   Returns the UTC date and time the specified seconds ago.
@@ -175,7 +175,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 30, 25}}
   """
   @spec seconds_ago(integer) :: datetime
-  def seconds_ago(seconds), do: seconds_before(seconds, now)
+  def seconds_ago(seconds), do: seconds_before(seconds, now())
 
   @doc """
   Returns the UTC date and time a second from now.
@@ -217,7 +217,8 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 15, 45}}
   """
   @spec minutes_before(integer, datetime) :: datetime
-  def minutes_before(minutes, datetime), do: seconds_before(minutes * @seconds_per_minute, datetime)
+  def minutes_before(minutes, datetime),
+    do: seconds_before(minutes * @seconds_per_minute, datetime)
 
   @doc """
   Returns the UTC date and time a minute after the given datetime.
@@ -250,7 +251,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 40, 45}}
   """
   @spec minutes_from_now(integer) :: datetime
-  def minutes_from_now(minutes), do: minutes_after(minutes, now)
+  def minutes_from_now(minutes), do: minutes_after(minutes, now())
 
   @doc """
   Returns the UTC date and time the specified minutes ago.
@@ -261,7 +262,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 25, 45}}
   """
   @spec minutes_ago(integer) :: datetime
-  def minutes_ago(minutes), do: minutes_before(minutes, now)
+  def minutes_ago(minutes), do: minutes_before(minutes, now())
 
   @doc """
   Returns the UTC date and time a minute from now.
@@ -338,7 +339,7 @@ defmodule GoodTimes do
       {{2015, 2, 28}, {0, 30, 45}}
   """
   @spec hours_from_now(integer) :: datetime
-  def hours_from_now(hours), do: hours_after(hours, now)
+  def hours_from_now(hours), do: hours_after(hours, now())
 
   @doc """
   Returns the UTC date and time the specified hours ago.
@@ -349,7 +350,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {16, 30, 45}}
   """
   @spec hours_ago(integer) :: datetime
-  def hours_ago(hours), do: hours_before(hours, now)
+  def hours_ago(hours), do: hours_before(hours, now())
 
   @doc """
   Returns the UTC date and time an hour from now.
@@ -426,7 +427,7 @@ defmodule GoodTimes do
       {{2015, 3, 1}, {18, 30, 45}}
   """
   @spec days_from_now(integer) :: datetime
-  def days_from_now(days), do: days_after(days, now)
+  def days_from_now(days), do: days_after(days, now())
 
   @doc """
   Returns the UTC date and time the specified days ago.
@@ -437,7 +438,7 @@ defmodule GoodTimes do
       {{2015, 2, 20}, {18, 30, 45}}
   """
   @spec days_ago(integer) :: datetime
-  def days_ago(days), do: days_before(days, now)
+  def days_ago(days), do: days_before(days, now())
 
   @doc """
   Returns the UTC date and time a day from now.
@@ -514,7 +515,7 @@ defmodule GoodTimes do
       {{2015, 3, 13}, {18, 30, 45}}
   """
   @spec weeks_from_now(integer) :: datetime
-  def weeks_from_now(weeks), do: weeks_after(weeks, now)
+  def weeks_from_now(weeks), do: weeks_after(weeks, now())
 
   @doc """
   Returns the UTC date and time the specified weeks ago.
@@ -525,7 +526,7 @@ defmodule GoodTimes do
       {{2015, 2, 13}, {18, 30, 45}}
   """
   @spec weeks_ago(integer) :: datetime
-  def weeks_ago(weeks), do: weeks_before(weeks, now)
+  def weeks_ago(weeks), do: weeks_before(weeks, now())
 
   @doc """
   Returns the UTC date and time a week from now.
@@ -579,7 +580,7 @@ defmodule GoodTimes do
 
   defp valid_day({year, month, day}) do
     [day, :calendar.last_day_of_the_month(year, month)]
-    |> Enum.min
+    |> Enum.min()
   end
 
   @doc """
@@ -624,7 +625,7 @@ defmodule GoodTimes do
       {{2015, 4, 27}, {18, 30, 45}}
   """
   @spec months_from_now(integer) :: datetime
-  def months_from_now(months), do: months_after(months, now)
+  def months_from_now(months), do: months_after(months, now())
 
   @doc """
   Returns the UTC date and time the specified months ago.
@@ -635,7 +636,7 @@ defmodule GoodTimes do
       {{2014, 12, 27}, {18, 30, 45}}
   """
   @spec months_ago(integer) :: datetime
-  def months_ago(months), do: months_before(months, now)
+  def months_ago(months), do: months_before(months, now())
 
   @doc """
   Returns the UTC date and time a month from now.
@@ -712,7 +713,7 @@ defmodule GoodTimes do
       {{2017, 2, 27}, {18, 30, 45}}
   """
   @spec years_from_now(integer) :: datetime
-  def years_from_now(years), do: years_after(years, now)
+  def years_from_now(years), do: years_after(years, now())
 
   @doc """
   Returns the UTC date and time the specified years ago.
@@ -723,7 +724,7 @@ defmodule GoodTimes do
       {{2013, 2, 27}, {18, 30, 45}}
   """
   @spec years_ago(integer) :: datetime
-  def years_ago(years), do: years_before(years, now)
+  def years_ago(years), do: years_before(years, now())
 
   @doc """
   Returns the UTC date and time a year from now.
