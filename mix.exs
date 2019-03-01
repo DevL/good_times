@@ -37,11 +37,11 @@ defmodule GoodTimes.Mixfile do
 
   defp deps do
     [
-      {:earmark, "~> 0.2", only: :dev},
-      {:ex_doc, "~> 0.12", only: :dev},
-      {:inch_ex, "~> 0.5", only: :docs},
-      {:excoveralls, "~> 0.4", only: :test},
-      {:mix_test_watch, "~> 0.2.6", only: :test}
+      {:earmark, "~> 1.3", only: :dev},
+      {:ex_doc, "~> 0.19", only: :dev},
+      {:inch_ex, "~> 2.0", only: :docs},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:mix_test_watch, "~> 0.9", only: :test}
     ]
   end
 end
