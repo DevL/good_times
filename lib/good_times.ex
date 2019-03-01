@@ -69,10 +69,10 @@ defmodule GoodTimes do
   @seconds_per_week 7 * @seconds_per_day
   @months_per_year 12
 
-  @type year  :: non_neg_integer
+  @type year :: non_neg_integer
   @type month :: 1..12
-  @type day   :: 1..31
-  @type hour   :: 0..23
+  @type day :: 1..31
+  @type hour :: 0..23
   @type minute :: 0..59
   @type second :: 0..59
   @type date :: {year, month, day}
@@ -88,7 +88,7 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 30, 45}}
   """
   @spec now :: datetime
-  def now, do: :calendar.universal_time
+  def now, do: :calendar.universal_time()
 
   @doc """
   Merges the date from the given date or datetime with the given time.
@@ -117,9 +117,9 @@ defmodule GoodTimes do
   @spec seconds_after(integer, datetime) :: datetime
   def seconds_after(seconds, datetime) do
     datetime
-    |> :calendar.datetime_to_gregorian_seconds
+    |> :calendar.datetime_to_gregorian_seconds()
     |> Kernel.+(seconds)
-    |> :calendar.gregorian_seconds_to_datetime
+    |> :calendar.gregorian_seconds_to_datetime()
   end
 
   @doc """
@@ -217,7 +217,8 @@ defmodule GoodTimes do
       {{2015, 2, 27}, {18, 15, 45}}
   """
   @spec minutes_before(integer, datetime) :: datetime
-  def minutes_before(minutes, datetime), do: seconds_before(minutes * @seconds_per_minute, datetime)
+  def minutes_before(minutes, datetime),
+    do: seconds_before(minutes * @seconds_per_minute, datetime)
 
   @doc """
   Returns the UTC date and time a minute after the given datetime.
@@ -579,7 +580,7 @@ defmodule GoodTimes do
 
   defp valid_day({year, month, day}) do
     [day, :calendar.last_day_of_the_month(year, month)]
-    |> Enum.min
+    |> Enum.min()
   end
 
   @doc """

@@ -1,18 +1,43 @@
 defmodule GoodTimesTest do
   use ExUnit.Case, async: true
   import GoodTimes
-  doctest GoodTimes, except: [
-    nil, # to exclude moduledoc
-    :moduledoc,
-    now: 0, at: 2,
-    seconds_from_now: 1, a_second_from_now: 0, seconds_ago: 1, a_second_ago: 0,
-    minutes_from_now: 1, a_minute_from_now: 0, minutes_ago: 1, a_minute_ago: 0,
-    hours_from_now: 1, an_hour_from_now: 0, hours_ago: 1, an_hour_ago: 0,
-    days_from_now: 1, a_day_from_now: 0, days_ago: 1, a_day_ago: 0,
-    weeks_from_now: 1, a_week_from_now: 0, weeks_ago: 1, a_week_ago: 0,
-    months_from_now: 1, a_month_from_now: 0, months_ago: 1, a_month_ago: 0,
-    years_from_now: 1, a_year_from_now: 0, years_ago: 1, a_year_ago: 0
-  ]
+
+  doctest GoodTimes,
+    except: [
+      # to exclude moduledoc
+      nil,
+      :moduledoc,
+      now: 0,
+      at: 2,
+      seconds_from_now: 1,
+      a_second_from_now: 0,
+      seconds_ago: 1,
+      a_second_ago: 0,
+      minutes_from_now: 1,
+      a_minute_from_now: 0,
+      minutes_ago: 1,
+      a_minute_ago: 0,
+      hours_from_now: 1,
+      an_hour_from_now: 0,
+      hours_ago: 1,
+      an_hour_ago: 0,
+      days_from_now: 1,
+      a_day_from_now: 0,
+      days_ago: 1,
+      a_day_ago: 0,
+      weeks_from_now: 1,
+      a_week_from_now: 0,
+      weeks_ago: 1,
+      a_week_ago: 0,
+      months_from_now: 1,
+      a_month_from_now: 0,
+      months_ago: 1,
+      a_month_ago: 0,
+      years_from_now: 1,
+      a_year_from_now: 0,
+      years_ago: 1,
+      a_year_ago: 0
+    ]
 
   test "now" do
     assert now() == :calendar.universal_time()
