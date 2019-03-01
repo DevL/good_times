@@ -1,8 +1,8 @@
 sulanguage: elixir
 elixir:
-  - 1.4.0
+  - 1.8.1
 otp_release:
-  - 19.2
+  - 21.0
 after_script:
   - MIX_ENV=docs mix deps.get
   - MIX_ENV=docs mix inch.report
