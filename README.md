@@ -1,5 +1,7 @@
 # GoodTimes
 
+**NB:** This repository has been moved to [https://codeberg.org/DevL/good_times](https://codeberg.org/DevL/good_times).
+
 [![Build Status](https://travis-ci.org/DevL/good_times.svg?branch=master)](https://travis-ci.org/DevL/good_times)
 [![Inline docs](http://inch-ci.org/github/DevL/good_times.svg?branch=master)](http://inch-ci.org/github/DevL/good_times)
 [![Hex.pm](https://img.shields.io/hexpm/v/good_times.svg)](https://hex.pm/packages/good_times)
